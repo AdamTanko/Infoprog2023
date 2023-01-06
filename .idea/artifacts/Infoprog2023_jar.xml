@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Infoprog2023:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Infoprog2023_jar</output-path>
+    <root id="archive" name="Infoprog2023.jar">
+      <element id="module-output" name="Infoprog2023" />
+    </root>
+  </artifact>
+</component>

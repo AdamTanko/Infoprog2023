@@ -6,16 +6,24 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Controller
 {
+
+    public static final ImageIcon ICON = new ImageIcon("images/Infoprog logo kicsi.png");
+    public static final String TITLE = "Napló";
+
     public static void setFilepath(String filepath)
     {
         Controller.filepath = filepath;
@@ -37,7 +45,8 @@ public class Controller
         {
             Scanner sc = new Scanner(new File(filepath));
             String line;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-L-y").withLocale(new Locale("hu","HU"));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+            DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("hu", "HU"));
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
             int linecounter = 0;
             while (sc.hasNext())
@@ -45,18 +54,26 @@ public class Controller
                 try
                 {
                     linecounter++;
+                    boolean wasDateParsed = true;
                     String[] tokens = sc.nextLine().split(",");
-                    Bejegyzes b = new Bejegyzes(
-                            LocalDate.parse(tokens[0], formatter),
-                            LocalTime.parse(tokens[1], timeFormatter),
-                            LocalTime.parse(tokens[2], timeFormatter),
-                            tokens[3]
-                    );
-                    naplo.add(b);
-
+                    if (tokens[3].length() > 250)
+                    {
+                        throw new StringIndexOutOfBoundsException();
+                    }
+                    if (tryParseDate(tokens[0]) != null)
+                    {
+                        Bejegyzes b = new Bejegyzes(tryParseDate(tokens[0]), LocalTime.parse(tokens[1], timeFormatter), LocalTime.parse(tokens[2], timeFormatter), tokens[3], true);
+                        naplo.add(b);
+                    } else
+                    {
+                        throw new DateTimeException("");
+                    }
                 } catch (DateTimeException e)
                 {
                     MainWindow.errBox("Rossz bemenet a " + linecounter + ". sorban", "Rossz bemenet");
+                } catch (StringIndexOutOfBoundsException e)
+                {
+                    MainWindow.errBox("Tul hosszu leiras a " + linecounter + ". sorban", "Rossz bemenet");
                 }
 
             }
@@ -67,10 +84,15 @@ public class Controller
         }
     }
 
+    /**
+     * Hitelesiti a beadaott bejegyzes egyeniseget
+     *
+     * @param b - egy bejegyzes
+     * @return - igaz, ha
+     */
     public static boolean isUnique(Bejegyzes b)
     {
-        for (Bejegyzes b2 :
-                naplo)
+        for (Bejegyzes b2 : naplo)
         {
             if (b2.getDatum().equals(b.getDatum()))
             {
@@ -94,8 +116,7 @@ public class Controller
         naplo.sort(new BejegyzesDatumComparitor());
         String[][] bejegyzesek = new String[naplo.size()][4];
         int yes = 0;
-        for (Bejegyzes b :
-                naplo)
+        for (Bejegyzes b : naplo)
         {
             bejegyzesek[yes++] = b.toArray();
 
@@ -116,8 +137,7 @@ public class Controller
         }
         String[][] bejegyzesek = new String[naplo.size()][4];
         int idx = 0;
-        for (Bejegyzes b :
-                naplo)
+        for (Bejegyzes b : naplo)
         {
             if (b.getDatum().equals(dt))
             {
@@ -130,14 +150,19 @@ public class Controller
         return jt;
     }
 
-    private static int writeToFile()
+    public static int writeToFile()
     {
         try
         {
             File file = new File(filepath);
-            file.createNewFile();
             FileWriter fw = new FileWriter(file);
 
+            for (Bejegyzes b :
+                    naplo)
+            {
+                fw.write(b.toString());
+
+            }
 
             fw.close();
         } catch (IOException e)
@@ -147,10 +172,102 @@ public class Controller
         return 0;
     }
 
-    public static boolean validate(Bejegyzes b)
-    {
 
-        return false;
+    public static void deletExpiredItems(LocalDateTime ldt)
+    {
+        if (naplo.size() == 0)
+        {
+            beolv();
+        }
+        int deletedItems = 0;
+        for (int i = 0; i < naplo.size(); i++)
+        {
+            Bejegyzes b = naplo.get(i);
+            if (ldt.toLocalDate().equals(b.getDatum()))
+            {
+                if (ldt.toLocalTime().isAfter(b.getZaroIdopont()))
+                {
+                    naplo.remove(b);
+                    deletedItems++;
+                }
+            } else if (ldt.toLocalDate().isAfter(b.getDatum()))
+            {
+                naplo.remove(b);
+                deletedItems++;
+            }
+        }
+
+
     }
 
+    public static LocalDate tryParseDate(String input)
+    {
+        try
+        {
+            Integer.parseInt(input.split("-")[1]);
+        } catch (NumberFormatException ignored)
+        {
+            HashMap<String, Integer> months = new HashMap<>();
+            months.put("JAN", 1);
+            months.put("JANUAR", 1);
+            months.put("JANUÁR", 1);
+            months.put("FEB", 2);
+            months.put("FEBRUAR", 2);
+            months.put("FEBRUÁR", 2);
+            months.put("MAR", 3);
+            months.put("MÁR", 3);
+            months.put("MARCIUS", 3);
+            months.put("MÁRCIUS", 3);
+            months.put("APR", 4);
+            months.put("ÁPR", 4);
+            months.put("APRILIS", 4);
+            months.put("ÁPRILIS", 4);
+            months.put("MAJ", 5);
+            months.put("MÁJ", 5);
+            months.put("MAJUS", 5);
+            months.put("MÁJUS", 5);
+            months.put("JUN", 6);
+            months.put("JÚNIUS", 6);
+            months.put("JUL", 7);
+            months.put("JÚL", 7);
+            months.put("JULIUS", 7);
+            months.put("JÚLIUS", 7);
+            months.put("AUG", 8);
+            months.put("AUGUSZTUS", 8);
+            months.put("SZEP", 9);
+            months.put("SZEPTEMBER", 9);
+            months.put("SEP", 9);
+            months.put("SEPTEMBER", 9);
+            months.put("OKT", 10);
+            months.put("OKTOBER", 10);
+            months.put("OKTÓBER", 10);
+            months.put("NOV", 11);
+            months.put("NOVEMBER", 11);
+            months.put("DEC", 12);
+            months.put("DECEMBER", 12);
+
+//            months.get("JAN");
+            String yes = input.split("-")[1].toUpperCase();
+            String no = months.get(input.split("-")[1].toUpperCase()).toString();
+            input = input.toUpperCase().replace(yes, no);
+        }
+
+
+        LocalDate dt = null;
+        System.out.println(input);
+        try
+        {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
+            dt = LocalDate.parse(input, formatter);
+        } catch (DateTimeException | NullPointerException ignored)
+        {
+
+        }
+
+        if (dt == null)
+        {
+            System.out.println("Nem sikerult parseolni");
+        }
+        return dt;
+    }
 }

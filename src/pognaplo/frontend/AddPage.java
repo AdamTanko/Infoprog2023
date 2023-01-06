@@ -5,11 +5,9 @@ import pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,47 +26,52 @@ public class AddPage extends JFrame
 
     public AddPage()
     {
-
+        setIconImage(Controller.ICON.getImage());
         setSize(300, 450);
-
+        setResizable(false);
         setContentPane(panel1);
         submitButton.addActionListener(e ->
         {
             try
             {
                 FileWriter fw = new FileWriter(Controller.getFilepath(), true);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-[LLL][MM]-[uu][uuuu]").withLocale(new Locale("hu", "HU"));
+
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
-                LocalDate.parse(datumTextField.getText(), formatter);
+                LocalDate dt = Controller.tryParseDate(datumTextField.getText());
                 LocalTime kezdoidopont = LocalTime.parse(kezdoIdopontTextField.getText(), timeFormatter);
                 LocalTime zaroidopont = LocalTime.parse(zaroIdopontTextField.getText(), timeFormatter);
-                if (zaroidopont.isBefore(kezdoidopont))
+                String esemeny = esemenyTextField.getText();
+                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250)
                 {
                     throw new Exception();
                 }
-
+                if (dt == null) {
+                    throw new NullPointerException("");
+                }
                 setVisible(false);
                 if (Controller.naplo.size() == 0)
                 {
                     Controller.beolv();
                 }
-                Bejegyzes b = new Bejegyzes(LocalDate.parse(datumTextField.getText(), formatter),
-                        LocalTime.parse(kezdoIdopontTextField.getText(), timeFormatter),
-                        LocalTime.parse(zaroIdopontTextField.getText(), timeFormatter),
-                        esemenyTextField.getText());
+                Bejegyzes b = new Bejegyzes(dt,
+                        kezdoidopont,
+                        zaroidopont,
+                        esemeny,
+                        false);
                 if (Controller.isUnique(b))
                 {
                     Controller.naplo.add(b);
                     fw.write(datumTextField.getText() + "," + kezdoIdopontTextField.getText() + "," + zaroIdopontTextField.getText() + ',' + esemenyTextField.getText() + "\n");
                     fw.close();
                 }
-
             } catch (IOException ex)
             {
                 throw new RuntimeException(ex);
             } catch (DateTimeException ex)
             {
-                MainWindow.errBox("Rossz Datum/Ido volt beadva", "Rossz bemenet");
+                MainWindow.errBox("Rossz Ido volt beadva", "Rossz bemenet");
+            } catch (NullPointerException ignored) {
+                MainWindow.errBox("Hiba tortent a datum megadasanal", "Hiba tortent");
             } catch (Exception ex)
             {
                 MainWindow.errBox("A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet");
@@ -96,7 +99,7 @@ public class AddPage extends JFrame
     private void $$$setupUI$$$()
     {
         panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(9, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(9, 1, new Insets(5, 5, 5, 5), -1, -1));
         datumTextField = new JTextField();
         datumTextField.setText("");
         datumTextField.setToolTipText("yes");

@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Infoprog2023:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infoprog2023.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/FindByDateInput.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/FindByDateInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesDatumComparitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/xd/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/xd/WindowCommunication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Infoprog2023_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Infoprog logo kicsi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesDatumComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesDatumComparitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/xd/WindowCommunication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +62,10 @@
     &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/VSC Programs/Projects/inroprog2022&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
@@ -79,22 +79,14 @@
       <recent name="pognaplo.kek" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="Main" />
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="DialogDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pognaplo.xd.DialogDemo" />
-      <module name="Infoprog2023" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pognaplo.xd.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FilePathGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.FilePathGUI" />
       <module name="Infoprog2023" />
       <extension name="coverage">
         <pattern>
@@ -132,6 +124,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.TestClass" />
+      <module name="Infoprog2023" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pognaplo.xd.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WindowCommunication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pognaplo.xd.WindowCommunication" />
       <module name="Infoprog2023" />
@@ -148,10 +153,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.DialogDemo" />
         <item itemvalue="Application.WindowCommunication" />
-        <item itemvalue="Application.FilePathGUI" />
-        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -166,11 +171,28 @@
       <workItem from="1672591180406" duration="15942000" />
       <workItem from="1672615776936" duration="10000" />
       <workItem from="1672651875441" duration="32509000" />
-      <workItem from="1672735723934" duration="2898000" />
+      <workItem from="1672735723934" duration="22344000" />
+      <workItem from="1672827642665" duration="2155000" />
+      <workItem from="1672862153352" duration="1161000" />
+      <workItem from="1672909197539" duration="1742000" />
+      <workItem from="1672913769632" duration="7662000" />
+      <workItem from="1672952365758" duration="1821000" />
     </task>
+    <task id="LOCAL-00001" summary="almost done kekw">
+      <created>1672738664278</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672738664278</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="almost done kekw" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost done kekw" />
   </component>
 </project>

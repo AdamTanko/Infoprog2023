@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MainWindow extends JFrame
@@ -20,9 +21,14 @@ public class MainWindow extends JFrame
     private JPanel buttonPanel;
     private JScrollPane tablePanel;
 
-
+    /**
+     *  A fo ablak amivel a felhasznalo erintekzni fog.
+     * @param filepath - filepath a naplo.txt-hez
+     */
     public MainWindow(String filepath)
     {
+        // megnezni, hogy a filepath tartalmazza-e a naplo.txt-t, ha nem appendeli a filepath-hez
+        // utana atadja a Controller-nek
         if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt"))
         {
             Controller.setFilepath(filepath);
@@ -30,8 +36,9 @@ public class MainWindow extends JFrame
         {
             Controller.setFilepath(filepath + "\\naplo.txt");
         }
-
-
+        setTitle(Controller.TITLE);
+        setIconImage(Controller.ICON.getImage());
+        setResizable(false);
         setSize(450, 300);
         setContentPane(panel1);
 
@@ -39,9 +46,18 @@ public class MainWindow extends JFrame
 
         deletButton.addActionListener(e ->
         {
-
+            Controller.deletExpiredItems(LocalDateTime.now());
+            tablePanel.setViewportView(Controller.listItems());
+            panel1.revalidate();
+            panel1.repaint();
         });
-        exitButton.addActionListener(e -> System.exit(0));
+        exitButton.addActionListener(e ->  {
+            if (Controller.naplo.size() == 0) {
+                System.exit(0);
+            } else {
+                System.exit(Controller.writeToFile());
+            }
+        });
         listButton.addActionListener(e ->
         {
             tablePanel.setViewportView(Controller.listItems());
@@ -51,7 +67,7 @@ public class MainWindow extends JFrame
         findButton.addActionListener(e ->
         {
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-[LLL]-[uu][uuuu]");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
             try
             {
                 LocalDate dt = LocalDate.parse(JOptionPane.showInputDialog("Adja meg a kersendő dátumot (dd-mm-yyyy formátumban):"), formatter);
