@@ -1,10 +1,8 @@
 package pognaplo.kek;
 
-import javax.print.attribute.standard.MediaSize;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class Bejegyzes
 {
@@ -14,7 +12,7 @@ public class Bejegyzes
     private LocalTime zaroIdopont;
     private String leiras;
 
-    private boolean wasReadFromFile;
+    private boolean wasReadFromFile = false;
 
 
 
@@ -29,6 +27,14 @@ public class Bejegyzes
         this.zaroIdopont = zaroIdopont;
         this.leiras = leiras;
         this.wasReadFromFile = wasReadFromFile;
+    }
+
+    public Bejegyzes(LocalDate datum, LocalTime kezdoIdopont, LocalTime zaroIdopont, String leiras)
+    {
+        this.datum = datum;
+        this.kezdoIdopont = kezdoIdopont;
+        this.zaroIdopont = zaroIdopont;
+        this.leiras = leiras;
     }
 
     public LocalDate getDatum()

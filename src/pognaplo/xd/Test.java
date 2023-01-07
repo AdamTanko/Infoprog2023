@@ -1,30 +1,33 @@
 package pognaplo.xd;
 
-import pognaplo.kek.Controller;
+import pognaplo.frontend.MainWindow;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.time.DateTimeException;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
 
-public class Test
-{
-    public static void main(String[] args) throws ParseException
-    {
-        LocalDate dt =null;
-        try
-        {
+public class Test {
+    public static void main(String[] args) {
+        try {
+            String input = "29-2-2024";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
-             dt = LocalDate.parse("28-13-2023", formatter);
+//        Year year = Year.parse(input.split("-")[2]);
+//        MonthDay month = MonthDay.parse(input.split("-")[0]+"-"+(input.split("-")[1]),formatter);
+            LocalDate date = LocalDate.parse(input,formatter);
 
-        } catch (DateTimeException | NullPointerException ignored)
-        {
-
+            if (!date.isLeapYear()) {
+                if (date.getMonth().equals(Month.FEBRUARY) && date.getDayOfMonth() == 29) {
+                    throw new DateTimeException("");
+                } else {
+                    System.out.println("very nice");
+                }
+            } else {
+                System.out.println("very nice");
+            }
+        } catch (DateTimeException ignored) {
+            MainWindow.errBox("Rossz datum","datum");
         }
-        System.out.println(dt);
+
+
     }
 
 

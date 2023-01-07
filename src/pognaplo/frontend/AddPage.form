@@ -16,7 +16,7 @@
         </constraints>
         <properties>
           <text value=""/>
-          <toolTipText value="yes"/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="57f7a" class="javax.swing.JLabel">

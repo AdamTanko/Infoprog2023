@@ -1,18 +1,17 @@
 package pognaplo.kek;
 
 import pognaplo.frontend.MainWindow;
+import pognaplo.xd.Main;
 
+import javax.management.MBeanServerInvocationHandler;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.MalformedInputException;
 import java.text.DateFormat;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -54,19 +53,13 @@ public class Controller
                 try
                 {
                     linecounter++;
-                    boolean wasDateParsed = true;
                     String[] tokens = sc.nextLine().split(",");
-                    if (tokens[3].length() > 250)
-                    {
-                        throw new StringIndexOutOfBoundsException();
-                    }
-                    if (tryParseDate(tokens[0]) != null)
-                    {
-                        Bejegyzes b = new Bejegyzes(tryParseDate(tokens[0]), LocalTime.parse(tokens[1], timeFormatter), LocalTime.parse(tokens[2], timeFormatter), tokens[3], true);
-                        naplo.add(b);
-                    } else
-                    {
-                        throw new DateTimeException("");
+                    if ( isValid(tokens)) {
+                        naplo.add(new Bejegyzes(LocalDate.parse(tokens[0],formatter),
+                                LocalTime.parse(tokens[1],timeFormatter),
+                                LocalTime.parse(tokens[2],timeFormatter),
+                                tokens[3],
+                                true));
                     }
                 } catch (DateTimeException e)
                 {
@@ -200,7 +193,89 @@ public class Controller
 
     }
 
-    public static LocalDate tryParseDate(String input)
+    public static boolean isValid(String dateS,String kezdoidoS, String zaroidoS,String leiras) {
+        try {
+            LocalDate dt = tryParseDate(dateS);
+            if( dt == null) {
+                throw new NullPointerException("");
+            }
+            LocalTime kezdoIdo = null;
+            LocalTime zaroIdo = null;
+            DateTimeFormatter tf = DateTimeFormatter.ofPattern("H:mm");
+            try {
+                kezdoIdo = LocalTime.parse(kezdoidoS,tf);
+                zaroIdo = LocalTime.parse(zaroidoS,tf);
+            } catch (DateTimeException ignored) {
+                MainWindow.errBox("Rossz ido", "");
+            }
+            if (kezdoIdo == null || zaroIdo == null) {
+                throw new NullPointerException("");
+            }
+            if (leiras.length() > 250) {
+                throw new StringIndexOutOfBoundsException("");
+            }
+            if (!isUnique(new Bejegyzes(dt,kezdoIdo,zaroIdo,leiras))) {
+                return false;
+            }
+        } catch (DateTimeException ignored) {
+            MainWindow.errBox("Rossz datum", "Rossz datum");
+            return false;
+        } catch (NullPointerException ignored) {
+            MainWindow.errBox("Hiba tortent a datum vagy az ido beolvasasanal", "Hiba");
+            return false;
+        } catch (StringIndexOutOfBoundsException ignored) {
+            MainWindow.errBox("tull hossz leiras", "Hiba");
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public static boolean isValid(String[] input) {
+        String dateS = input[0];
+        String kezdoidoS = input[1];
+        String zaroidoS = input[2];
+        String leiras = input[3];
+        try {
+            LocalDate dt = tryParseDate(dateS);
+            if( dt == null) {
+                throw new NullPointerException("");
+            }
+            LocalTime kezdoIdo = null;
+            LocalTime zaroIdo = null;
+            DateTimeFormatter tf = DateTimeFormatter.ofPattern("H:mm");
+            try {
+                kezdoIdo = LocalTime.parse(kezdoidoS,tf);
+                zaroIdo = LocalTime.parse(zaroidoS,tf);
+            } catch (DateTimeException ignored) {
+                MainWindow.errBox("Rossz ido", "");
+            }
+            if (kezdoIdo == null || zaroIdo == null) {
+                throw new NullPointerException("");
+            }
+            if (leiras.length() > 250) {
+                throw new StringIndexOutOfBoundsException("");
+            }
+            if (!isUnique(new Bejegyzes(dt,kezdoIdo,zaroIdo,leiras))) {
+                return false;
+            }
+        } catch (DateTimeException ignored) {
+            MainWindow.errBox("Rossz datum", "Rossz datum");
+            return false;
+        } catch (NullPointerException ignored) {
+            MainWindow.errBox("Hiba tortent a datum vagy az ido beolvasasanal", "Hiba");
+            return false;
+        } catch (StringIndexOutOfBoundsException ignored) {
+            MainWindow.errBox("tull hossz leiras", "Hiba");
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException
     {
         try
         {
@@ -246,7 +321,6 @@ public class Controller
             months.put("DEC", 12);
             months.put("DECEMBER", 12);
 
-//            months.get("JAN");
             String yes = input.split("-")[1].toUpperCase();
             String no = months.get(input.split("-")[1].toUpperCase()).toString();
             input = input.toUpperCase().replace(yes, no);
@@ -255,14 +329,8 @@ public class Controller
 
         LocalDate dt = null;
         System.out.println(input);
-        try
-        {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
-            dt = LocalDate.parse(input, formatter);
-        } catch (DateTimeException | NullPointerException ignored)
-        {
-
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
+        dt = LocalDate.parse(input, formatter);
 
         if (dt == null)
         {

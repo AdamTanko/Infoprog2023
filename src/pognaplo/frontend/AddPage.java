@@ -7,12 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class AddPage extends JFrame
 {
@@ -34,13 +30,17 @@ public class AddPage extends JFrame
         {
             try
             {
-                FileWriter fw = new FileWriter(Controller.getFilepath(), true);
 
+                FileWriter fw = new FileWriter(Controller.getFilepath(), true);
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
                 LocalDate dt = Controller.tryParseDate(datumTextField.getText());
                 LocalTime kezdoidopont = LocalTime.parse(kezdoIdopontTextField.getText(), timeFormatter);
                 LocalTime zaroidopont = LocalTime.parse(zaroIdopontTextField.getText(), timeFormatter);
                 String esemeny = esemenyTextField.getText();
+
+
+
+
                 if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250)
                 {
                     throw new Exception();
@@ -48,7 +48,7 @@ public class AddPage extends JFrame
                 if (dt == null) {
                     throw new NullPointerException("");
                 }
-                setVisible(false);
+
                 if (Controller.naplo.size() == 0)
                 {
                     Controller.beolv();
@@ -61,9 +61,11 @@ public class AddPage extends JFrame
                 if (Controller.isUnique(b))
                 {
                     Controller.naplo.add(b);
-                    fw.write(datumTextField.getText() + "," + kezdoIdopontTextField.getText() + "," + zaroIdopontTextField.getText() + ',' + esemenyTextField.getText() + "\n");
+                    fw.write(dt + "," + kezdoidopont + "," + zaroidopont + ',' + esemeny + "\n");
                     fw.close();
+                    setVisible(false);
                 }
+
             } catch (IOException ex)
             {
                 throw new RuntimeException(ex);

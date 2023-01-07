@@ -37,16 +37,11 @@ public class WelcomePage extends JFrame
 
 
         // Akkor aktíválódik, ha a felhasználó megnyomja a "Submit" gombot.
-        submitButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                // bekeri a "textfield1"-tol a szöveget, ami ebben az esetben az út a naplo.txt-hez,
-                // és megnyitja a főablakot.
-                MainWindow mw = new MainWindow(textField1.getText());
-                setVisible(false);
-            }
+        submitButton.addActionListener(e -> {
+            // bekeri a "textfield1"-tol a szöveget, ami ebben az esetben az út a naplo.txt-hez,
+            // és megnyitja a főablakot.
+            MainWindow mw = new MainWindow(textField1.getText());
+            setVisible(false);
         });
         pack();
         setLocationRelativeTo(null);
@@ -67,19 +62,14 @@ public class WelcomePage extends JFrame
         });
 
         // Alternativa az elozo ketto opciohoz, ahol a felhasznalo egyenesen kikeresi a naplo.txt helyet a rendszeren
-        chooseButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                JFileChooser jFC = new JFileChooser();
-                jFC.setCurrentDirectory(new File("."));
+        chooseButton.addActionListener(e -> {
+            JFileChooser jFC = new JFileChooser();
+            jFC.setCurrentDirectory(new File("."));
 
-                if (jFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-                {
-                    Controller.setFilepath(jFC.getSelectedFile().getAbsolutePath());
-                    textField1.setText(jFC.getSelectedFile().getAbsolutePath());
-                }
+            if (jFC.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            {
+                Controller.setFilepath(jFC.getSelectedFile().getAbsolutePath());
+                textField1.setText(jFC.getSelectedFile().getAbsolutePath());
             }
         });
     }

@@ -1,6 +1,5 @@
 package pognaplo.kek;
 
-import java.time.LocalDateTime;
 import java.util.Comparator;
 
 public class BejegyzesKezdoIdopontComparitor implements Comparator<Bejegyzes>
