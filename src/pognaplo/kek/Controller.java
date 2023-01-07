@@ -1,5 +1,7 @@
 package pognaplo.kek;
 
+import pognaplo.exceptions.RosszDatumException;
+import pognaplo.exceptions.RosszIdoException;
 import pognaplo.frontend.MainWindow;
 import pognaplo.xd.Main;
 
@@ -55,7 +57,7 @@ public class Controller
                     linecounter++;
                     String[] tokens = sc.nextLine().split(",");
                     if ( isValid(tokens)) {
-                        naplo.add(new Bejegyzes(LocalDate.parse(tokens[0],formatter),
+                        naplo.add(new Bejegyzes(tryParseDate(tokens[0]),
                                 LocalTime.parse(tokens[1],timeFormatter),
                                 LocalTime.parse(tokens[2],timeFormatter),
                                 tokens[3],
@@ -197,7 +199,7 @@ public class Controller
         try {
             LocalDate dt = tryParseDate(dateS);
             if( dt == null) {
-                throw new NullPointerException("");
+                throw new RosszDatumException("");
             }
             LocalTime kezdoIdo = null;
             LocalTime zaroIdo = null;
@@ -211,13 +213,16 @@ public class Controller
             if (kezdoIdo == null || zaroIdo == null) {
                 throw new NullPointerException("");
             }
+            if(zaroIdo.isBefore(kezdoIdo)) {
+                throw new RosszIdoException("");
+            }
             if (leiras.length() > 250) {
                 throw new StringIndexOutOfBoundsException("");
             }
             if (!isUnique(new Bejegyzes(dt,kezdoIdo,zaroIdo,leiras))) {
                 return false;
             }
-        } catch (DateTimeException ignored) {
+        } catch (RosszDatumException ignored) {
             MainWindow.errBox("Rossz datum", "Rossz datum");
             return false;
         } catch (NullPointerException ignored) {
@@ -226,6 +231,8 @@ public class Controller
         } catch (StringIndexOutOfBoundsException ignored) {
             MainWindow.errBox("tull hossz leiras", "Hiba");
             return false;
+        } catch (RosszIdoException e) {
+            MainWindow.errBox("A zaro ido nem lehet a kezdo ido elott","Rossz Ido");
         }
 
 
@@ -328,7 +335,7 @@ public class Controller
 
 
         LocalDate dt = null;
-        System.out.println(input);
+//        System.out.println(input);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
         dt = LocalDate.parse(input, formatter);
 
