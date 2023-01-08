@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class AddPage extends JFrame {
+public class AddPage extends JFrame
+{
     private JTextField datumTextField;
     private JPanel panel1;
     private JTextField kezdoIdopontTextField;
@@ -19,14 +20,16 @@ public class AddPage extends JFrame {
     private JLabel dateandformat;
     private JButton submitButton;
 
-    public AddPage() {
+    public AddPage()
+    {
         setIconImage(Controller.ICON.getImage());
         setSize(300, 450);
         setResizable(false);
         setContentPane(panel1);
         submitButton.addActionListener(e ->
         {
-            try {
+            try
+            {
 
                 FileWriter fw = new FileWriter(Controller.getFilepath(), true);
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
@@ -36,14 +39,17 @@ public class AddPage extends JFrame {
                 String esemeny = esemenyTextField.getText();
 
 
-                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250) {
+                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250)
+                {
                     throw new Exception();
                 }
-                if (dt == null) {
+                if (dt == null)
+                {
                     throw new NullPointerException("");
                 }
 
-                if (Controller.naplo.size() == 0) {
+                if (Controller.naplo.size() == 0)
+                {
                     Controller.beolv();
                 }
                 Bejegyzes b = new Bejegyzes(dt,
@@ -51,21 +57,26 @@ public class AddPage extends JFrame {
                         zaroidopont,
                         esemeny,
                         false);
-                if (Controller.isUnique(b)) {
+                if (Controller.isUnique(b))
+                {
                     Controller.naplo.add(b);
-                    fw.write(dt + "," + kezdoidopont + "," + zaroidopont + ',' + esemeny + "\n");
+                    fw.write(datumTextField.getText() + "," + kezdoIdopontTextField.getText() + "," + zaroIdopontTextField.getText() + ',' + esemeny + "\n");
                     fw.close();
                     setVisible(false);
                 }
 
-            } catch (IOException ex) {
+            } catch (IOException ex)
+            {
                 throw new RuntimeException(ex);
-            } catch (DateTimeException ex) {
-                MainWindow.errBox("Rossz Ido volt beadva", "Rossz bemenet");
-            } catch (NullPointerException ignored) {
-                MainWindow.errBox("Hiba tortent a datum megadasanal", "Hiba tortent");
-            } catch (Exception ex) {
-                MainWindow.errBox("A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet");
+            } catch (DateTimeException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Rossz Ido volt beadva", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException ignored)
+            {
+                JOptionPane.showMessageDialog(null, "Hiba tortent a datum megadasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             }
         });
         pack();
@@ -87,7 +98,8 @@ public class AddPage extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(9, 1, new Insets(5, 5, 5, 5), -1, -1));
         datumTextField = new JTextField();
@@ -123,7 +135,8 @@ public class AddPage extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return panel1;
     }
 

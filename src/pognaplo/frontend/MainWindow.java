@@ -22,7 +22,8 @@ public class MainWindow extends JFrame
     private JScrollPane tablePanel;
 
     /**
-     *  A fo ablak amivel a felhasznalo erintekzni fog.
+     * A fo ablak amivel a felhasznalo erintekzni fog.
+     *
      * @param filepath - filepath a naplo.txt-hez
      */
     public MainWindow(String filepath)
@@ -51,10 +52,13 @@ public class MainWindow extends JFrame
             panel1.revalidate();
             panel1.repaint();
         });
-        exitButton.addActionListener(e ->  {
-            if (Controller.naplo.size() == 0) {
+        exitButton.addActionListener(e ->
+        {
+            if (Controller.naplo.size() == 0)
+            {
                 System.exit(0);
-            } else {
+            } else
+            {
                 System.exit(Controller.writeToFile());
             }
         });
@@ -72,10 +76,11 @@ public class MainWindow extends JFrame
             {
                 LocalDate dt = LocalDate.parse(JOptionPane.showInputDialog("Adja meg a kersendő dátumot (dd-mm-yyyy formátumban):"), formatter);
                 tablePanel.setViewportView(Controller.findBasedOnDate(dt));
-            } catch (DateTimeException ex) {
-                errBox("Rossz datum volt beadva", "Rossz Bemenet");
-            } catch (NullPointerException ex) {
-
+            } catch (DateTimeException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Rossz datum volt beadva", "Rossz Bemenet", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException ignored)
+            {
             }
 
         });
@@ -148,8 +153,4 @@ public class MainWindow extends JFrame
     }
 
 
-    public static void errBox(String infoMessage, String titleBar)
-    {
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.ERROR_MESSAGE);
-    }
 }

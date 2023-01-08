@@ -102,6 +102,6 @@ public class Bejegyzes
 
     @Override
     public String toString() {
-        return this.datum.format(DateTimeFormatter.ofPattern("dd-MM-uuuu")) + ',' + this.kezdoIdopont.toString() + ',' + this.zaroIdopont.toString() + ',' + this.leiras +'\n';
+        return this.datum.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ',' + this.kezdoIdopont.toString() + ',' + this.zaroIdopont.toString() + ',' + this.leiras +'\n';
     }
 }

@@ -7,12 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="date parsing still not werk GOD FUCKING DAMNIT">
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/exceptions/InputFormatException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/exceptions/RosszDatumException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pognaplo/exceptions/RosszIdoException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +57,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -167,6 +167,8 @@
       <workItem from="1672909197539" duration="1742000" />
       <workItem from="1672913769632" duration="7662000" />
       <workItem from="1672952365758" duration="1821000" />
+      <workItem from="1673172631005" duration="1318000" />
+      <workItem from="1673184263732" duration="6115000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
