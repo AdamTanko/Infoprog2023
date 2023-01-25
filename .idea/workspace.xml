@@ -5,15 +5,33 @@
       <artifact name="Infoprog2023:jar" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="date parsing still not werk GOD FUCKING DAMNIT">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/exceptions/InputFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/InputFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/exceptions/RosszDatumException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszDatumException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/exceptions/RosszIdoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszIdoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/frontend/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Bejegyzes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesDatumComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesDatumComparitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/xd/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pognaplo/xd/Test.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,22 +62,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/VSC Programs/Projects/inroprog2022&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/VSC Programs/Projects/inroprog2022",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\VSC Programs\Projects\Infoprog2023\src\pognaplo\frontend" />
@@ -74,7 +92,7 @@
       <command value="Main" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.main.java.pognaplo.xd.Main">
     <configuration name="DialogDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pognaplo.xd.DialogDemo" />
       <module name="Infoprog2023" />
@@ -127,12 +145,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WindowCommunication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.WindowCommunication" />
+    <configuration name="main.java.pognaplo.xd.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.java.pognaplo.xd.Main" />
       <module name="Infoprog2023" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pognaplo.xd.*" />
+          <option name="PATTERN" value="main.java.pognaplo.xd.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,11 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.main.java.pognaplo.xd.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.TestClass" />
         <item itemvalue="Application.DialogDemo" />
-        <item itemvalue="Application.WindowCommunication" />
       </list>
     </recent_temporary>
   </component>

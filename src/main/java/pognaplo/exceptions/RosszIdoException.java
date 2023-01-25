@@ -1,4 +1,4 @@
-package pognaplo.exceptions;
+package main.java.pognaplo.exceptions;
 
 public class RosszIdoException extends Exception
 {

@@ -1,4 +1,4 @@
-package pognaplo.exceptions;
+package main.java.pognaplo.exceptions;
 
 public class InputFormatException extends Exception{
     public InputFormatException(String s) {

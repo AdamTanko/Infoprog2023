@@ -1,17 +1,18 @@
-package pognaplo.frontend;
+package main.java.pognaplo.frontend;
 
-import pognaplo.kek.Bejegyzes;
-import pognaplo.kek.Controller;
+import main.java.pognaplo.kek.Bejegyzes;
+import main.java.pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class AddPage extends JFrame
-{
+public class AddPage extends JFrame {
     private JTextField datumTextField;
     private JPanel panel1;
     private JTextField kezdoIdopontTextField;
@@ -19,17 +20,16 @@ public class AddPage extends JFrame
     private JTextField esemenyTextField;
     private JLabel dateandformat;
     private JButton submitButton;
+    private JButton chooseButton;
 
-    public AddPage()
-    {
+    public AddPage() {
         setIconImage(Controller.ICON.getImage());
         setSize(300, 450);
         setResizable(false);
         setContentPane(panel1);
         submitButton.addActionListener(e ->
         {
-            try
-            {
+            try {
 
                 FileWriter fw = new FileWriter(Controller.getFilepath(), true);
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
@@ -39,17 +39,14 @@ public class AddPage extends JFrame
                 String esemeny = esemenyTextField.getText();
 
 
-                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250)
-                {
+                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250) {
                     throw new Exception();
                 }
-                if (dt == null)
-                {
+                if (dt == null) {
                     throw new NullPointerException("");
                 }
 
-                if (Controller.naplo.size() == 0)
-                {
+                if (Controller.naplo.size() == 0) {
                     Controller.beolv();
                 }
                 Bejegyzes b = new Bejegyzes(dt,
@@ -57,31 +54,29 @@ public class AddPage extends JFrame
                         zaroidopont,
                         esemeny,
                         false);
-                if (Controller.isUnique(b))
-                {
+                if (Controller.isUnique(b)) {
                     Controller.naplo.add(b);
                     fw.write(datumTextField.getText() + "," + kezdoIdopontTextField.getText() + "," + zaroIdopontTextField.getText() + ',' + esemeny + "\n");
                     fw.close();
                     setVisible(false);
                 }
 
-            } catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 throw new RuntimeException(ex);
-            } catch (DateTimeException ex)
-            {
+            } catch (DateTimeException ex) {
                 JOptionPane.showMessageDialog(null, "Rossz Ido volt beadva", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
-            } catch (NullPointerException ignored)
-            {
+            } catch (NullPointerException ignored) {
                 JOptionPane.showMessageDialog(null, "Hiba tortent a datum megadasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             }
         });
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        chooseButton.addActionListener(e -> {
+
+        });
     }
 
     {
@@ -98,10 +93,9 @@ public class AddPage extends JFrame
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(9, 1, new Insets(5, 5, 5, 5), -1, -1));
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(9, 2, new Insets(5, 5, 5, 5), -1, -1));
         datumTextField = new JTextField();
         datumTextField.setText("");
         datumTextField.setToolTipText("");
@@ -114,29 +108,31 @@ public class AddPage extends JFrame
         panel1.add(dateandformat, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         kezdoIdopontTextField = new JTextField();
         kezdoIdopontTextField.setText("");
-        panel1.add(kezdoIdopontTextField, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel1.add(kezdoIdopontTextField, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("zaro idopont");
         panel1.add(label2, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         zaroIdopontTextField = new JTextField();
         zaroIdopontTextField.setText("");
-        panel1.add(zaroIdopontTextField, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel1.add(zaroIdopontTextField, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         esemenyTextField = new JTextField();
         esemenyTextField.setText("");
-        panel1.add(esemenyTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel1.add(esemenyTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("esemeny");
         panel1.add(label3, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         submitButton = new JButton();
         submitButton.setText("Submit");
-        panel1.add(submitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(submitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        chooseButton = new JButton();
+        chooseButton.setText("choose");
+        panel1.add(chooseButton, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
 
