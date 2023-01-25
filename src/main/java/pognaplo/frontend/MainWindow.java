@@ -1,6 +1,6 @@
-package main.java.pognaplo.frontend;
+package pognaplo.frontend;
 
-import main.java.pognaplo.kek.Controller;
+import pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
-package main.java.pognaplo.xd;
+package pognaplo.xd;
 
-import main.java.pognaplo.frontend.WelcomePage;
+import pognaplo.frontend.WelcomePage;
 
 import javax.swing.*;
 
@@ -8,6 +8,7 @@ public class Main
 {
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        System.out.println(UIManager.getSystemLookAndFeelClassName());
         WelcomePage wp = new WelcomePage();
 
     }

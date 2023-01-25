@@ -1,4 +1,4 @@
-package main.java.pognaplo.exceptions;
+package pognaplo.exceptions;
 
 public class RosszDatumException extends Exception{
     public RosszDatumException (String s) {

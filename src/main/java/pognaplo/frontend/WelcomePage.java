@@ -1,11 +1,9 @@
-package main.java.pognaplo.frontend;
+package pognaplo.frontend;
 
-import main.java.pognaplo.kek.Controller;
+import pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;

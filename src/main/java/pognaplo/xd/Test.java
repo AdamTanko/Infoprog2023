@@ -1,6 +1,6 @@
-package main.java.pognaplo.xd;
+package pognaplo.xd;
 
-import main.java.pognaplo.kek.Controller;
+import pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.text.SimpleDateFormat;

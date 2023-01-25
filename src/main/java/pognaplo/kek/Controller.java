@@ -1,7 +1,7 @@
-package main.java.pognaplo.kek;
+package pognaplo.kek;
 
-import main.java.pognaplo.exceptions.RosszDatumException;
-import main.java.pognaplo.exceptions.RosszIdoException;
+import pognaplo.exceptions.RosszDatumException;
+import pognaplo.exceptions.RosszIdoException;
 
 import javax.swing.*;
 import java.io.File;

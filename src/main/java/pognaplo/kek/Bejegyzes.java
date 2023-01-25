@@ -1,4 +1,4 @@
-package main.java.pognaplo.kek;
+package pognaplo.kek;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

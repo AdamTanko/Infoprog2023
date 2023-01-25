@@ -21,6 +21,11 @@
             <artifactId>swingx-all</artifactId>
             <version>1.6.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.lgooddatepicker</groupId>
+            <artifactId>LGoodDatePicker</artifactId>
+            <version>11.2.1</version>
+        </dependency>
     </dependencies>
 
 </project>
