@@ -10,9 +10,13 @@ import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Main operating class of the project
+ */
 public class Controller
 {
 
@@ -32,15 +36,17 @@ public class Controller
     private static String FILEPATH = "txt/naplo.txt";
     public static final ArrayList<Bejegyzes> naplo = new ArrayList<>();
 
+    private static final ArrayList<String> errors = new ArrayList<>();
     private static final String[] header = {"dátum", "kezdő időpont", "záró időpont", "esemény"};
 
-    public static void beolv()
+    public static void beolv(boolean displayErrorMsgs)
     {
         try
         {
             Scanner sc = new Scanner(new File(FILEPATH));
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
             int linecounter = 0;
+
             while (sc.hasNext())
             {
                 try
@@ -57,13 +63,27 @@ public class Controller
                     }
                 } catch (DateTimeException ignored)
                 {
-                    JOptionPane.showMessageDialog(null, "Rossz bemenet a " + linecounter + ". sorban", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                    errors.add("Rossz bemenet a " + linecounter + ". sorban\n");
                 } catch (StringIndexOutOfBoundsException ignored)
                 {
-                    JOptionPane.showMessageDialog(null, "Tul hosszu leiras a " + linecounter + ". sorban", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                    errors.add("Tul hosszu leiras a " + linecounter + ". sorban\n");
+
                 } catch (RosszDatumException ignored) {
-                    JOptionPane.showMessageDialog(null, "Rossz datum a " + linecounter + ". sorban", "Rossz datum", JOptionPane.ERROR_MESSAGE);
+                    errors.add("Rossz datum a " + linecounter + ". sorban\n");
                 }
+            }
+
+            if(errors.size() != 0 && displayErrorMsgs) {
+                JTextArea textArea = new JTextArea(6, 25);
+                textArea.setText((errors.toString()));
+                textArea.setEditable(false);
+
+                // wrap a scrollpane around it
+                JScrollPane scrollPane = new JScrollPane(textArea);
+
+                // display them in a message dialog
+                JOptionPane.showMessageDialog(null, scrollPane);
+                errors.clear();
             }
             sc.close();
         } catch (IOException e)
@@ -95,12 +115,7 @@ public class Controller
 
     public static JTable listItems()
     {
-        if (naplo.size() == 0)
-        {
-            beolv();
-        }
-
-
+        beolv(true);
         naplo.sort(new BejegyzesDatumComparitor());
         String[][] bejegyzesek = new String[naplo.size()][4];
         int yes = 0;
@@ -121,7 +136,7 @@ public class Controller
     {
         if (naplo.size() == 0)
         {
-            beolv();
+            beolv(false);
         }
         String[][] bejegyzesek = new String[naplo.size()][4];
         int idx = 0;
@@ -165,7 +180,7 @@ public class Controller
     {
         if (naplo.size() == 0)
         {
-            beolv();
+            beolv(false);
         }
         int deletedItems = 0;
         for (int i = 0; i < naplo.size(); i++)
@@ -206,7 +221,8 @@ public class Controller
                 zaroIdo = LocalTime.parse(zaroidoS, tf);
             } catch (DateTimeException ignored)
             {
-                JOptionPane.showMessageDialog(null, "Rossz ido", "", JOptionPane.ERROR_MESSAGE);
+                errors.add("Rossz ido\n");
+
             }
             if (kezdoIdo == null || zaroIdo == null)
             {
@@ -226,19 +242,23 @@ public class Controller
             }
         } catch (RosszDatumException ignored)
         {
-            JOptionPane.showMessageDialog(null, "Rossz datum", "Rossz datum", JOptionPane.ERROR_MESSAGE);
+            errors.add("Rossz datum\n");
+
             return false;
         } catch (NullPointerException ignored)
         {
-            JOptionPane.showMessageDialog(null, "Hiba tortent a datum vagy az ido beolvasasanal", "Hiba", JOptionPane.ERROR_MESSAGE);
+            errors.add("Hiba tortent a datum vagy az ido beolvasasanal\n");
+
             return false;
         } catch (StringIndexOutOfBoundsException ignored)
         {
-            JOptionPane.showMessageDialog(null, "tull hossz leiras", "Hiba", JOptionPane.ERROR_MESSAGE);
+            errors.add("tull hosszu leiras\n");
+
             return false;
         } catch (RosszIdoException e)
         {
-            JOptionPane.showMessageDialog(null, "A zaro ido nem lehet a kezdo ido elott", "Rossz Ido", JOptionPane.ERROR_MESSAGE);
+            errors.add("A zaro ido nem lehet a kezdo ido elott\n");
+            return false;
         }
 
 
@@ -256,9 +276,10 @@ public class Controller
 
     public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException, RosszDatumException
     {
+        String REGEX = "[-,.]";
         try
         {
-            Integer.parseInt(input.split("-")[1]);
+            Integer.parseInt(input.split(REGEX)[1]);
         } catch (NumberFormatException ignored)
         {
             HashMap<String, Integer> months = new HashMap<>();
@@ -300,13 +321,13 @@ public class Controller
             months.put("DEC", 12);
             months.put("DECEMBER", 12);
 
-            String yes = input.split("-")[1].toUpperCase();
-            String no = months.get(input.split("-")[1].toUpperCase()).toString();
+            String yes = input.split(REGEX)[1].toUpperCase();
+            String no = months.get(input.split(REGEX)[1].toUpperCase()).toString();
             input = input.toUpperCase().replace(yes, no);
         }
 
-        Year year = Year.parse(input.split("-")[2]);
-        if (!year.isLeap() && input.split("-")[1].equals("2") && input.split("-")[0].equals("29"))
+        Year year = Year.parse(input.split(REGEX)[2]);
+        if (!year.isLeap() && input.split(REGEX)[1].equals("2") && input.split(REGEX)[0].equals("29"))
         {
             throw new RosszDatumException("");
         }

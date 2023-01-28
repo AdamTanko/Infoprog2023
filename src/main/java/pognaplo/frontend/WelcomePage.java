@@ -38,8 +38,8 @@ public class WelcomePage extends JFrame
         submitButton.addActionListener(e -> {
             // bekeri a "textfield1"-tol a szöveget, ami ebben az esetben az út a naplo.txt-hez,
             // és megnyitja a főablakot.
-            MainWindow mw = new MainWindow(textField1.getText());
-            setVisible(false);
+            new MainWindow(textField1.getText());
+            dispose();
         });
         pack();
         setLocationRelativeTo(null);
@@ -53,8 +53,8 @@ public class WelcomePage extends JFrame
                 super.keyPressed(e);
                 if (e.getKeyCode() == KeyEvent.VK_ENTER)
                 {
-                    MainWindow mw = new MainWindow(textField1.getText());
-                    setVisible(false);
+                    new MainWindow(textField1.getText());
+                    dispose();
                 }
             }
         });

@@ -10,32 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="date parsing still not werk GOD FUCKING DAMNIT">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_lgooddatepicker_LGoodDatePicker_11_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_swinglabs_swingx_swingx_all_1_6_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/xd/ShowMessageDialogWithScrollpane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infoprog2023.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Infoprog2023.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/InputFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/InputFormatException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszDatumException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszDatumException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszIdoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszIdoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Bejegyzes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesDatumComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesDatumComparitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/xd/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +48,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2JjUqakUBg6Se8Jxw9ZTJIbrCAD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -129,8 +114,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.Test" />
+    <configuration name="ShowMessageDialogWithScrollpane" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.ShowMessageDialogWithScrollpane" />
       <module name="Infoprog2023" />
       <extension name="coverage">
         <pattern>
@@ -142,8 +127,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.TestClass" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pognaplo.xd.Test" />
       <module name="Infoprog2023" />
       <extension name="coverage">
         <pattern>
@@ -171,10 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.ShowMessageDialogWithScrollpane" />
         <item itemvalue="Application.BasicDemo" />
         <item itemvalue="Application.main.java.pognaplo.xd.Main" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.TestClass" />
       </list>
     </recent_temporary>
   </component>
@@ -197,6 +182,11 @@
       <workItem from="1672952365758" duration="1821000" />
       <workItem from="1673172631005" duration="1318000" />
       <workItem from="1673184263732" duration="6115000" />
+      <workItem from="1674675818208" duration="2043000" />
+      <workItem from="1674767849459" duration="1741000" />
+      <workItem from="1674799394160" duration="484000" />
+      <workItem from="1674833077992" duration="3550000" />
+      <workItem from="1674854524406" duration="2735000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
@@ -233,5 +223,16 @@
     <MESSAGE value="almost done kekw" />
     <MESSAGE value="date parsing still not werk GOD FUCKING DAMNIT" />
     <option name="LAST_COMMIT_MESSAGE" value="date parsing still not werk GOD FUCKING DAMNIT" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

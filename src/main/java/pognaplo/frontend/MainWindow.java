@@ -4,13 +4,11 @@ import pognaplo.kek.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class MainWindow extends JFrame
 {
+
     private JPanel panel1;
     private JButton listButton;
     private JButton findButton;
@@ -20,6 +18,7 @@ public class MainWindow extends JFrame
     private JTable table1;
     private JPanel buttonPanel;
     private JScrollPane tablePanel;
+
 
     /**
      * A fo ablak amivel a felhasznalo erintekzni fog.
@@ -56,6 +55,7 @@ public class MainWindow extends JFrame
         {
             if (Controller.naplo.size() == 0)
             {
+                dispose();
                 System.exit(0);
             } else
             {
@@ -70,23 +70,25 @@ public class MainWindow extends JFrame
         });
         findButton.addActionListener(e ->
         {
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
-            try
-            {
-                LocalDate dt = LocalDate.parse(JOptionPane.showInputDialog("Adja meg a kersendő dátumot (dd-mm-yyyy formátumban):"), formatter);
-                tablePanel.setViewportView(Controller.findBasedOnDate(dt));
-            } catch (DateTimeException ex)
-            {
-                JOptionPane.showMessageDialog(null, "Rossz datum volt beadva", "Rossz Bemenet", JOptionPane.ERROR_MESSAGE);
-            } catch (NullPointerException ignored)
-            {
-            }
+            FindDialog yes = new FindDialog();
+            Controller.findBasedOnDate(yes.getDateInput());
+            yes.dispose();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+//            try
+//            {
+//                LocalDate dt = LocalDate.parse(JOptionPane.showInputDialog("Adja meg a kersendő dátumot (dd-mm-yyyy formátumban):"), formatter);
+//                tablePanel.setViewportView(Controller.findBasedOnDate(dt));
+//            } catch (DateTimeException ex)
+//            {
+//                JOptionPane.showMessageDialog(null, "Rossz datum volt beadva", "Rossz Bemenet", JOptionPane.ERROR_MESSAGE);
+//            } catch (NullPointerException ignored)
+//            {
+//            }
 
         });
         addButton.addActionListener(e ->
         {
-            AddPage ap = new AddPage();
+            new AddWindow();
         });
         pack();
         setLocationRelativeTo(null);
