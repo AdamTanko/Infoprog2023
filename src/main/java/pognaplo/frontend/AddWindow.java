@@ -3,6 +3,8 @@ package pognaplo.frontend;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
+import pognaplo.exceptions.LeirasLengthException;
+import pognaplo.exceptions.RosszIdoException;
 import pognaplo.kek.Bejegyzes;
 import pognaplo.kek.Controller;
 
@@ -34,36 +36,31 @@ public class AddWindow extends JFrame
         setSize(300, 450);
         setResizable(false);
         setContentPane(panel1);
+
+
         submitButton.addActionListener(e ->
         {
             try
             {
-
                 FileWriter fw = new FileWriter(Controller.getFilepath(), true);
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                LocalDate dt = LocalDate.parse(DateTimeFormatter.ofPattern("dd-MM-uuuu").format(datepicker.getDate()));
-                LocalTime kezdoidopont = LocalTime.parse(kezdoidopontPicker.getText(), timeFormatter);
-                LocalTime zaroidopont = LocalTime.parse(zaroidopontPicker.getText(), timeFormatter);
+                LocalDate dt = datepicker.getDate();
+                LocalTime kezdoidopont = kezdoidopontPicker.getTime();
+                LocalTime zaroidopont = zaroidopontPicker.getTime();
                 String esemeny = esemenyTextField.getText();
 
-                if (zaroidopont.isBefore(kezdoidopont) || esemeny.length() > 250)
-                {
-                    throw new Exception();
-                }
-                if (dt == null)
-                {
-                    throw new NullPointerException("");
-                }
+
+                if (zaroidopont.isBefore(kezdoidopont)) throw new RosszIdoException("");
+                if (esemeny.length() > 250) throw new LeirasLengthException("");
+                if (dt == null) throw new NullPointerException("");
 
                 Bejegyzes b = new Bejegyzes(dt,
                         kezdoidopont,
                         zaroidopont,
-                        esemeny,
-                        false);
+                        esemeny);
                 if (Controller.isUnique(b))
                 {
 
-                    fw.write(dt.format(DateTimeFormatter.ofPattern("dd-MM-uuuu")) + "," + kezdoidopont.format(timeFormatter) + "," + zaroidopont.format(timeFormatter) + ',' + esemeny + "\n");
+                    fw.write(dt.format(DateTimeFormatter.ofPattern("dd-MM-uuuu")) + "," + kezdoidopont + "," + zaroidopont + ',' + esemeny + "\n");
                     fw.close();
                     dispose();
                 }
@@ -73,11 +70,14 @@ public class AddWindow extends JFrame
                 throw new RuntimeException(ex);
             } catch (DateTimeException ex)
             {
-                JOptionPane.showMessageDialog(null, "Rossz Ido volt beadva", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Hiba tortent a beolvasasnal", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             } catch (NullPointerException ignored)
             {
                 JOptionPane.showMessageDialog(null, "Hiba tortent a datum megadasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex)
+            } catch (LeirasLengthException ignored)
+            {
+                JOptionPane.showMessageDialog(null, "A leiras tull hosszu", "Tull hosszu leiras", JOptionPane.ERROR_MESSAGE);
+            } catch (RosszIdoException ignored)
             {
                 JOptionPane.showMessageDialog(null, "A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             }
@@ -138,7 +138,7 @@ public class AddWindow extends JFrame
         timeSettings.setDisplaySpinnerButtons(true);
         timeSettings.generatePotentialMenuTimes(TimePickerSettings.TimeIncrement.TenMinutes, null, null);
         timeSettings.setInitialTimeToNow();
-        datepicker.setLocale(new Locale("SK", "sk"));
+        datepicker.setLocale(new Locale("HU", "sk"));
         kezdoidopontPicker = new TimePicker(timeSettings);
         zaroidopontPicker = new TimePicker(timeSettings);
     }

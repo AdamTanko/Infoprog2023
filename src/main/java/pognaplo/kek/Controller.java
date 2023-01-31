@@ -4,6 +4,7 @@ import pognaplo.exceptions.RosszDatumException;
 import pognaplo.exceptions.RosszIdoException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,9 +20,13 @@ import java.util.Scanner;
  */
 public class Controller
 {
+    private static final String[] HEADER = {"dátum", "kezdő időpont", "záró időpont", "esemény"};
 
     public static final ImageIcon ICON = new ImageIcon("images/Infoprog logo kicsi.png");
+
     public static final String TITLE = "Napló";
+
+    private static String FILEPATH = "txt/naplo.txt";
 
     public static void setFilepath(String filepath)
     {
@@ -33,11 +38,11 @@ public class Controller
         return FILEPATH;
     }
 
-    private static String FILEPATH = "txt/naplo.txt";
     public static final ArrayList<Bejegyzes> naplo = new ArrayList<>();
 
-    private static final ArrayList<String> errors = new ArrayList<>();
-    private static final String[] header = {"dátum", "kezdő időpont", "záró időpont", "esemény"};
+    private static StringBuilder errors = new StringBuilder();
+
+
 
     public static void beolv(boolean displayErrorMsgs)
     {
@@ -58,24 +63,24 @@ public class Controller
                         naplo.add(new Bejegyzes(tryParseDate(tokens[0]),
                                 LocalTime.parse(tokens[1], timeFormatter),
                                 LocalTime.parse(tokens[2], timeFormatter),
-                                tokens[3],
-                                true));
+                                tokens[3]));
                     }
                 } catch (DateTimeException ignored)
                 {
-                    errors.add("Rossz bemenet a " + linecounter + ". sorban\n");
+                    errors.append("Rossz bemenet a ").append(linecounter).append(". sorban\n");
                 } catch (StringIndexOutOfBoundsException ignored)
                 {
-                    errors.add("Tul hosszu leiras a " + linecounter + ". sorban\n");
+                    errors.append("Tul hosszu leiras a ").append(linecounter).append(". sorban\n");
 
                 } catch (RosszDatumException ignored) {
-                    errors.add("Rossz datum a " + linecounter + ". sorban\n");
+                    errors.append("Rossz datum a ").append(linecounter).append(". sorban\n");
                 }
             }
 
-            if(errors.size() != 0 && displayErrorMsgs) {
+            if(errors.length() != 0 && displayErrorMsgs) {
                 JTextArea textArea = new JTextArea(6, 25);
-                textArea.setText((errors.toString()));
+                textArea.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,15));
+                textArea.setText(errors.toString());
                 textArea.setEditable(false);
 
                 // wrap a scrollpane around it
@@ -83,7 +88,7 @@ public class Controller
 
                 // display them in a message dialog
                 JOptionPane.showMessageDialog(null, scrollPane);
-                errors.clear();
+                errors = new StringBuilder();
             }
             sc.close();
         } catch (IOException e)
@@ -125,7 +130,7 @@ public class Controller
 
         }
 
-        JTable jt = new JTable(bejegyzesek, header);
+        JTable jt = new JTable(bejegyzesek, HEADER);
         jt.setBounds(50, 40, 200, 0);
         jt.setDefaultEditor(Object.class, null);
         return jt;
@@ -134,10 +139,7 @@ public class Controller
 
     public static JTable findBasedOnDate(LocalDate dt)
     {
-        if (naplo.size() == 0)
-        {
-            beolv(false);
-        }
+        beolv(false);
         String[][] bejegyzesek = new String[naplo.size()][4];
         int idx = 0;
         for (Bejegyzes b : naplo)
@@ -148,11 +150,12 @@ public class Controller
             }
         }
 
-        JTable jt = new JTable(bejegyzesek, header);
+        JTable jt = new JTable(bejegyzesek, HEADER);
         jt.setDefaultEditor(Object.class, null);
         return jt;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public static int writeToFile()
     {
         try
@@ -164,9 +167,7 @@ public class Controller
                     naplo)
             {
                 fw.write(b.toString());
-
             }
-
             fw.close();
         } catch (IOException e)
         {
@@ -199,6 +200,7 @@ public class Controller
                 deletedItems++;
             }
         }
+        JOptionPane.showMessageDialog(null,deletedItems + " bejegyzes lett torolve","Torles sikeres",JOptionPane.INFORMATION_MESSAGE);
 
 
     }
@@ -221,7 +223,7 @@ public class Controller
                 zaroIdo = LocalTime.parse(zaroidoS, tf);
             } catch (DateTimeException ignored)
             {
-                errors.add("Rossz ido\n");
+                errors.append("Rossz ido\n");
 
             }
             if (kezdoIdo == null || zaroIdo == null)
@@ -242,22 +244,22 @@ public class Controller
             }
         } catch (RosszDatumException ignored)
         {
-            errors.add("Rossz datum\n");
+            errors.append("Rossz datum\n");
 
             return false;
         } catch (NullPointerException ignored)
         {
-            errors.add("Hiba tortent a datum vagy az ido beolvasasanal\n");
+            errors.append("Hiba tortent a datum vagy az ido beolvasasanal\n");
 
             return false;
         } catch (StringIndexOutOfBoundsException ignored)
         {
-            errors.add("tull hosszu leiras\n");
+            errors.append("tull hosszu leiras\n");
 
             return false;
         } catch (RosszIdoException e)
         {
-            errors.add("A zaro ido nem lehet a kezdo ido elott\n");
+            errors.append("A zaro ido nem lehet a kezdo ido elott\n");
             return false;
         }
 

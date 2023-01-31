@@ -23,6 +23,7 @@
           </grid>
         </constraints>
         <properties>
+          <editable value="true"/>
           <horizontalAlignment value="0"/>
         </properties>
       </component>
