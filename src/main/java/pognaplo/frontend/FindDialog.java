@@ -54,7 +54,7 @@ public class FindDialog extends JDialog {
 
     private void onOK() {
         System.out.println(datePicker.getDate());
-        setDateInput(LocalDate.parse(DateTimeFormatter.ofPattern("dd-MM-uuuu").format(datePicker.getDate())));
+        setDateInput(datePicker.getDate());
         dispose();
     }
 
