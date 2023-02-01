@@ -9,12 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="i dont even know what is not working at this point, its just not working">
+    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="switched to maven and FUCKING SWINGX NOT FOUND KURWA">
       <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/LeirasLengthException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/ErrorDialog.form" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/ErrorDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infoprog2023.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Infoprog2023.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
@@ -93,7 +94,7 @@
       <command value="Main" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="BasicDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.lgooddatepicker.demo.BasicDemo" />
       <extension name="coverage">
@@ -160,8 +161,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.FindDialog" />
         <item itemvalue="Application.ShowMessageDialogWithScrollpane" />
         <item itemvalue="Application.BasicDemo" />

@@ -2,6 +2,7 @@ package pognaplo.kek;
 
 import pognaplo.exceptions.RosszDatumException;
 import pognaplo.exceptions.RosszIdoException;
+import pognaplo.frontend.ErrorDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -77,19 +77,10 @@ public class Controller
                 }
             }
 
-            if(errors.length() != 0 && displayErrorMsgs) {
-                JTextArea textArea = new JTextArea(6, 25);
-                textArea.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,15));
-                textArea.setText(errors.toString());
-                textArea.setEditable(false);
-
-                // wrap a scrollpane around it
-                JScrollPane scrollPane = new JScrollPane(textArea);
-
-                // display them in a message dialog
-                JOptionPane.showMessageDialog(null, scrollPane);
-                errors = new StringBuilder();
+            if(!errors.isEmpty() && displayErrorMsgs) {
+                new ErrorDialog(errors.toString());
             }
+            errors = new StringBuilder();
             sc.close();
         } catch (IOException e)
         {
@@ -98,10 +89,10 @@ public class Controller
     }
 
     /**
-     * Hitelesiti a beadaott bejegyzes egyeniseget
+     * Hitelesiti a beadaott bejegyzes egyediseget
      *
-     * @param b - egy bejegyzes
-     * @return - igaz, ha
+     * @param b  egy bejegyzes
+     * @return  igaz, ha a megadott bejegyzes egyedi
      */
     public static boolean isUnique(Bejegyzes b)
     {
@@ -149,7 +140,9 @@ public class Controller
                 bejegyzesek[idx++] = b.toArray();
             }
         }
-
+        if (bejegyzesek.length == 0) {
+            return null;
+        }
         JTable jt = new JTable(bejegyzesek, HEADER);
         jt.setDefaultEditor(Object.class, null);
         return jt;
@@ -179,7 +172,7 @@ public class Controller
 
     public static void deletExpiredItems(LocalDateTime ldt)
     {
-        if (naplo.size() == 0)
+        if (naplo.isEmpty())
         {
             beolv(false);
         }

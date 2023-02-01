@@ -7,8 +7,7 @@ import java.awt.*;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-public class MainWindow extends JFrame
-{
+public class MainWindow extends JFrame {
 
     private JPanel panel1;
     private JButton listButton;
@@ -19,8 +18,7 @@ public class MainWindow extends JFrame
     private JTable table1;
     private JPanel buttonPanel;
 
-    public void setTablePanel(JScrollPane tablePanel)
-    {
+    public void setTablePanel(JScrollPane tablePanel) {
         this.tablePanel.setViewportView(tablePanel);
     }
 
@@ -32,16 +30,13 @@ public class MainWindow extends JFrame
      *
      * @param filepath - filepath a naplo.txt-hez
      */
-    public MainWindow(String filepath)
-    {
+    public MainWindow(String filepath) {
         // megnezni, hogy a filepath tartalmazza-e a naplo.txt-t, ha nem appendeli a filepath-hez
         // utana atadja a Controller-nek
         $$$setupUI$$$();
-        if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt"))
-        {
+        if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt")) {
             Controller.setFilepath(filepath);
-        } else
-        {
+        } else {
             Controller.setFilepath(filepath + "\\naplo.txt");
         }
         setTitle(Controller.TITLE);
@@ -61,12 +56,10 @@ public class MainWindow extends JFrame
         });
         exitButton.addActionListener(e ->
         {
-            if (Controller.naplo.size() == 0)
-            {
+            if (Controller.naplo.size() == 0) {
                 dispose();
                 System.exit(0);
-            } else
-            {
+            } else {
                 System.exit(Controller.writeToFile());
             }
         });
@@ -78,14 +71,17 @@ public class MainWindow extends JFrame
         });
         findButton.addActionListener(e ->
         {
-            try
-            {
+            try {
                 FindDialog yes = new FindDialog();
-                tablePanel.setViewportView(Controller.findBasedOnDate(yes.getDateInput()));
-                yes.dispose();
-            } catch (DateTimeException ignored)
-            {
+                if (yes.getDateInput() == null) {
+                    throw new NullPointerException();
+                } else {
+                    tablePanel.setViewportView(Controller.findBasedOnDate(yes.getDateInput()));
+                }
+
+            } catch (DateTimeException ignored) {
                 JOptionPane.showMessageDialog(null, "Hiba tortent a datum beolvasasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException ignored) {
             }
         });
         addButton.addActionListener(e ->
@@ -95,8 +91,7 @@ public class MainWindow extends JFrame
         setVisible(true);
     }
 
-    public void updateTable(JTable jt)
-    {
+    public void updateTable(JTable jt) {
         this.tablePanel.setViewportView(jt);
     }
 
@@ -108,8 +103,7 @@ public class MainWindow extends JFrame
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$()
-    {
+    private void $$$setupUI$$$() {
         createUIComponents();
         panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -147,14 +141,12 @@ public class MainWindow extends JFrame
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$()
-    {
+    public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
 
 
-    private void createUIComponents()
-    {
+    private void createUIComponents() {
         tablePanel = new JScrollPane();
     }
 }
