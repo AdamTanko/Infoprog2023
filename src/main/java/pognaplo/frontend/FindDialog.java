@@ -9,7 +9,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class FindDialog extends JDialog {
+public class FindDialog extends JDialog
+{
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -18,7 +19,8 @@ public class FindDialog extends JDialog {
 
     private LocalDate dateInput;
 
-    public FindDialog() {
+    public FindDialog()
+    {
 
         $$$setupUI$$$();
         setContentPane(contentPane);
@@ -32,8 +34,10 @@ public class FindDialog extends JDialog {
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent e)
+            {
                 onCancel();
             }
         });
@@ -44,21 +48,25 @@ public class FindDialog extends JDialog {
         setVisible(true);
     }
 
-    public LocalDate getDateInput() {
+    public LocalDate getDateInput()
+    {
         return dateInput;
     }
 
-    public void setDateInput(LocalDate dateInput) {
+    public void setDateInput(LocalDate dateInput)
+    {
         this.dateInput = dateInput;
     }
 
-    private void onOK() {
+    private void onOK()
+    {
         System.out.println(datePicker.getDate());
         setDateInput(datePicker.getDate());
         dispose();
     }
 
-    private void onCancel() {
+    private void onCancel()
+    {
         dispose();
     }
 
@@ -69,7 +77,8 @@ public class FindDialog extends JDialog {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         createUIComponents();
         contentPane = new JPanel();
         contentPane.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(10, 10, 10, 10), -1, -1));
@@ -82,10 +91,10 @@ public class FindDialog extends JDialog {
         panel2.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
         panel1.add(panel2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonOK = new JButton();
-        buttonOK.setText("OK");
+        buttonOK.setText("Keresés");
         panel2.add(buttonOK, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         buttonCancel = new JButton();
-        buttonCancel.setText("Cancel");
+        buttonCancel.setText("Mégse");
         panel2.add(buttonCancel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -99,11 +108,13 @@ public class FindDialog extends JDialog {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return contentPane;
     }
 
-    private void createUIComponents() {
+    private void createUIComponents()
+    {
         datePicker = new DatePicker();
         datePicker.setLocale(new Locale("SK", "sk"));
     }

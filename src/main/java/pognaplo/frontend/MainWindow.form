@@ -23,7 +23,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="&amp;Add"/>
+              <text value="Hozzáadás"/>
             </properties>
           </component>
           <component id="7830f" class="javax.swing.JButton" binding="listButton" default-binding="true">
@@ -31,7 +31,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="List"/>
+              <text value="Listázás"/>
             </properties>
           </component>
           <component id="50fdd" class="javax.swing.JButton" binding="findButton" default-binding="true">
@@ -39,7 +39,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Find"/>
+              <text value="Keresés"/>
             </properties>
           </component>
           <component id="f7df8" class="javax.swing.JSeparator">
@@ -53,7 +53,7 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Exit"/>
+              <text value="Kilépés"/>
             </properties>
           </component>
           <component id="f6394" class="javax.swing.JButton" binding="deletButton" default-binding="true">
@@ -62,7 +62,7 @@
             </constraints>
             <properties>
               <enabled value="true"/>
-              <text value="Delet"/>
+              <text value="Törlés"/>
             </properties>
           </component>
         </children>

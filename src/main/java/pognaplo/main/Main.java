@@ -1,4 +1,4 @@
-package pognaplo.xd;
+package pognaplo.main;
 
 import pognaplo.frontend.WelcomePage;
 

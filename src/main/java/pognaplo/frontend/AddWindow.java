@@ -70,21 +70,22 @@ public class AddWindow extends JFrame
                 throw new RuntimeException(ex);
             } catch (DateTimeException ex)
             {
-                JOptionPane.showMessageDialog(null, "Hiba tortent a beolvasasnal", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Hiba történt a beolvasasnal", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             } catch (NullPointerException ignored)
             {
-                JOptionPane.showMessageDialog(null, "Hiba tortent a datum megadasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Hiba törtent a dátum megadásánál", "Hiba törtent", JOptionPane.ERROR_MESSAGE);
             } catch (LeirasLengthException ignored)
             {
-                JOptionPane.showMessageDialog(null, "A leiras tull hosszu", "Tull hosszu leiras", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "A leirás túll hosszú (Több mint 250 karakter)", "Túll hosszú leirás", JOptionPane.ERROR_MESSAGE);
             } catch (RosszIdoException ignored)
             {
-                JOptionPane.showMessageDialog(null, "A zaro idopont nem lehet a kezdo idopont elott", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "A záró időpont nem lehet a kezdő időpont előtt", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
             }
         });
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
     /**
@@ -103,19 +104,21 @@ public class AddWindow extends JFrame
         label1.setText("Dátum:");
         panel1.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         dateandformat = new JLabel();
-        dateandformat.setText("kezdo idopont");
+        dateandformat.setText("kezdő időpont");
         panel1.add(dateandformat, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("zaro idopont");
+        label2.setText("záró időpont");
         panel1.add(label2, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         esemenyTextField = new JTextField();
         esemenyTextField.setText("");
         panel1.add(esemenyTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("esemeny");
+        label3.setText("esemény");
         panel1.add(label3, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         submitButton = new JButton();
-        submitButton.setText("Submit");
+        submitButton.setText("Hozzáadás");
+        submitButton.setMnemonic('H');
+        submitButton.setDisplayedMnemonicIndex(0);
         panel1.add(submitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel1.add(datepicker, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel1.add(kezdoidopontPicker, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));

@@ -7,7 +7,8 @@ import java.awt.*;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame
+{
 
     private JPanel panel1;
     private JButton listButton;
@@ -18,10 +19,6 @@ public class MainWindow extends JFrame {
     private JTable table1;
     private JPanel buttonPanel;
 
-    public void setTablePanel(JScrollPane tablePanel) {
-        this.tablePanel.setViewportView(tablePanel);
-    }
-
     private JScrollPane tablePanel;
 
 
@@ -30,16 +27,19 @@ public class MainWindow extends JFrame {
      *
      * @param filepath - filepath a naplo.txt-hez
      */
-    public MainWindow(String filepath) {
+    public MainWindow(String filepath)
+    {
         // megnezni, hogy a filepath tartalmazza-e a naplo.txt-t, ha nem appendeli a filepath-hez
         // utana atadja a Controller-nek
         $$$setupUI$$$();
-        if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt")) {
+        if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt"))
+        {
             Controller.setFilepath(filepath);
-        } else {
+        } else
+        {
             Controller.setFilepath(filepath + "\\naplo.txt");
         }
-        setTitle(Controller.TITLE);
+        setTitle("Napló");
         setIconImage(Controller.ICON.getImage());
         setResizable(false);
         setSize(450, 300);
@@ -47,22 +47,8 @@ public class MainWindow extends JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        deletButton.addActionListener(e ->
-        {
-            Controller.deletExpiredItems(LocalDateTime.now());
-            tablePanel.setViewportView(Controller.listItems());
-            panel1.revalidate();
-            panel1.repaint();
-        });
-        exitButton.addActionListener(e ->
-        {
-            if (Controller.naplo.size() == 0) {
-                dispose();
-                System.exit(0);
-            } else {
-                System.exit(Controller.writeToFile());
-            }
-        });
+
+
         listButton.addActionListener(e ->
         {
             tablePanel.setViewportView(Controller.listItems());
@@ -71,28 +57,49 @@ public class MainWindow extends JFrame {
         });
         findButton.addActionListener(e ->
         {
-            try {
+            try
+            {
                 FindDialog yes = new FindDialog();
-                if (yes.getDateInput() == null) {
+                if (yes.getDateInput() == null)
+                {
                     throw new NullPointerException();
-                } else {
+                } else
+                {
                     tablePanel.setViewportView(Controller.findBasedOnDate(yes.getDateInput()));
+                    tablePanel.revalidate();
+                    tablePanel.repaint();
                 }
 
-            } catch (DateTimeException ignored) {
+            } catch (DateTimeException ignored)
+            {
                 JOptionPane.showMessageDialog(null, "Hiba tortent a datum beolvasasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
-            } catch (NullPointerException ignored) {
+            } catch (NullPointerException ignored)
+            {
             }
         });
-        addButton.addActionListener(e ->
-                new AddWindow());
+        addButton.addActionListener(e -> new AddWindow());
+        deletButton.addActionListener(e ->
+        {
+            Controller.deletExpiredItems();
+            tablePanel.setViewportView(Controller.listItems());
+            panel1.revalidate();
+            panel1.repaint();
+        });
+        exitButton.addActionListener(e ->
+        {
+            if (Controller.naplo.size() == 0)
+            {
+                dispose();
+                System.exit(0);
+            } else
+            {
+                System.exit(Controller.writeToFile());
+            }
+        });
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    public void updateTable(JTable jt) {
-        this.tablePanel.setViewportView(jt);
     }
 
 
@@ -103,7 +110,8 @@ public class MainWindow extends JFrame {
      *
      * @noinspection ALL
      */
-    private void $$$setupUI$$$() {
+    private void $$$setupUI$$$()
+    {
         createUIComponents();
         panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -111,24 +119,22 @@ public class MainWindow extends JFrame {
         buttonPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 1, new Insets(0, 5, 0, 0), -1, -1));
         panel1.add(buttonPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(40, 199), null, 0, false));
         addButton = new JButton();
-        addButton.setText("Add");
-        addButton.setMnemonic('A');
-        addButton.setDisplayedMnemonicIndex(0);
+        addButton.setText("Hozzáadás");
         buttonPanel.add(addButton, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         listButton = new JButton();
-        listButton.setText("List");
+        listButton.setText("Listázás");
         buttonPanel.add(listButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         findButton = new JButton();
-        findButton.setText("Find");
+        findButton.setText("Keresés");
         buttonPanel.add(findButton, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         buttonPanel.add(separator1, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         exitButton = new JButton();
-        exitButton.setText("Exit");
+        exitButton.setText("Kilépés");
         buttonPanel.add(exitButton, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deletButton = new JButton();
         deletButton.setEnabled(true);
-        deletButton.setText("Delet");
+        deletButton.setText("Törlés");
         buttonPanel.add(deletButton, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel1.add(tablePanel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         table1 = new JTable();
@@ -141,12 +147,14 @@ public class MainWindow extends JFrame {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public JComponent $$$getRootComponent$$$()
+    {
         return panel1;
     }
 
 
-    private void createUIComponents() {
+    private void createUIComponents()
+    {
         tablePanel = new JScrollPane();
     }
 }
