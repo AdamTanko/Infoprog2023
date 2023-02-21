@@ -9,19 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="fixed a lot of this, and cleaned shit up">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/FindDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/Bejegyzes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesDatumComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/BejegyzesDatumComparitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/BejegyzesKezdoIdopontComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/BejegyzesKezdoIdopontComparitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/kek/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/main/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
+    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="still cleaning shit up">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +185,7 @@
       <workItem from="1675364391960" duration="1987000" />
       <workItem from="1675523347120" duration="5430000" />
       <workItem from="1675587052919" duration="36000" />
-      <workItem from="1677009667542" duration="4297000" />
+      <workItem from="1677009667542" duration="4580000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
@@ -219,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675587079847</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="still cleaning shit up">
+      <created>1677014652731</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677014652731</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +247,8 @@
     <MESSAGE value="almost done kekw" />
     <MESSAGE value="date parsing still not werk GOD FUCKING DAMNIT" />
     <MESSAGE value="fixed a lot of this, and cleaned shit up" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed a lot of this, and cleaned shit up" />
+    <MESSAGE value="still cleaning shit up" />
+    <option name="LAST_COMMIT_MESSAGE" value="still cleaning shit up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
