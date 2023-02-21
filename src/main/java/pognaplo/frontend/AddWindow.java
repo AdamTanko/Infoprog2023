@@ -5,8 +5,8 @@ import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
 import pognaplo.exceptions.LeirasLengthException;
 import pognaplo.exceptions.RosszIdoException;
-import pognaplo.kek.Bejegyzes;
-import pognaplo.kek.Controller;
+import pognaplo.control.Bejegyzes;
+import pognaplo.control.Controller;
 
 import javax.swing.*;
 import java.awt.*;

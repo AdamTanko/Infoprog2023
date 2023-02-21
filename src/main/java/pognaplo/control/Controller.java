@@ -1,11 +1,10 @@
-package pognaplo.kek;
+package pognaplo.control;
 
 import pognaplo.exceptions.RosszDatumException;
 import pognaplo.exceptions.RosszIdoException;
 import pognaplo.frontend.ErrorDialog;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,28 +12,25 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
  * Main operating class of the project
  */
-public class Controller
-{
+public class Controller {
     private static final String[] HEADER = {"dátum", "kezdő időpont", "záró időpont", "esemény"};
 
     public static final ImageIcon ICON = new ImageIcon("images/Infoprog logo kicsi.png");
 
 
-
     private static String FILEPATH = "txt/naplo.txt";
 
-    public static void setFilepath(String filepath)
-    {
+    public static void setFilepath(String filepath) {
         Controller.FILEPATH = filepath;
     }
 
-    public static String getFilepath()
-    {
+    public static String getFilepath() {
         return FILEPATH;
     }
 
@@ -42,34 +38,28 @@ public class Controller
 
     private static StringBuilder errors = new StringBuilder();
 
-
-
-    public static void beolv(boolean displayErrorMsgs)
-    {
-        try
-        {
+    /**
+     * Beolvassa a naplo.txt tartalmát a naplo {@link ArrayList}-be
+     */
+    public static void beolv(boolean displayErrorMsgs) {
+        try {
             Scanner sc = new Scanner(new File(FILEPATH));
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
             int linecounter = 0;
 
-            while (sc.hasNext())
-            {
-                try
-                {
+            while (sc.hasNext()) {
+                try {
                     linecounter++;
                     String[] tokens = sc.nextLine().split(",");
-                    if (isValid(tokens))
-                    {
+                    if (isValid(tokens)) {
                         naplo.add(new Bejegyzes(tryParseDate(tokens[0]),
                                 LocalTime.parse(tokens[1], timeFormatter),
                                 LocalTime.parse(tokens[2], timeFormatter),
                                 tokens[3]));
                     }
-                } catch (DateTimeException ignored)
-                {
+                } catch (DateTimeException ignored) {
                     errors.append("Rossz bemenet a ").append(linecounter).append(". sorban\n");
-                } catch (StringIndexOutOfBoundsException ignored)
-                {
+                } catch (StringIndexOutOfBoundsException ignored) {
                     errors.append("Túl hosszú leírás a ").append(linecounter).append(". sorban\n");
 
                 } catch (RosszDatumException ignored) {
@@ -77,26 +67,21 @@ public class Controller
                 }
             }
 
-            if(!errors.isEmpty() && displayErrorMsgs) {
+            if (!errors.isEmpty() && displayErrorMsgs) {
                 new ErrorDialog(errors.toString());
             }
             errors = new StringBuilder();
             sc.close();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-    public static boolean isUnique(Bejegyzes b)
-    {
-        for (Bejegyzes b2 : naplo)
-        {
-            if (b2.getDatum().equals(b.getDatum()))
-            {
-                if (b2.getKezdoIdopont().equals(b.getKezdoIdopont()))
-                {
+    public static boolean isUnique(Bejegyzes b) {
+        for (Bejegyzes b2 : naplo) {
+            if (b2.getDatum().equals(b.getDatum())) {
+                if (b2.getKezdoIdopont().equals(b.getKezdoIdopont())) {
                     return false;
                 }
             }
@@ -104,14 +89,12 @@ public class Controller
         return true;
     }
 
-    public static JTable listItems()
-    {
+    public static JTable listItems() {
         beolv(true);
         naplo.sort(new BejegyzesDatumComparitor());
         String[][] bejegyzesek = new String[naplo.size()][4];
         int yes = 0;
-        for (Bejegyzes b : naplo)
-        {
+        for (Bejegyzes b : naplo) {
             bejegyzesek[yes++] = b.toArray();
 
         }
@@ -123,15 +106,12 @@ public class Controller
     }
 
 
-    public static JTable findBasedOnDate(LocalDate dt)
-    {
+    public static JTable findBasedOnDate(LocalDate dt) {
         beolv(false);
         String[][] bejegyzesek = new String[naplo.size()][4];
         int idx = 0;
-        for (Bejegyzes b : naplo)
-        {
-            if (b.getDatum().equals(dt))
-            {
+        for (Bejegyzes b : naplo) {
+            if (b.getDatum().equals(dt)) {
                 bejegyzesek[idx++] = b.toArray();
             }
         }
@@ -147,117 +127,88 @@ public class Controller
     /**
      * Beírja a naplo.txt-be a naplo {@link ArrayList} tartalmát
      */
-    public static int writeToFile()
-    {
-        try
-        {
+    public static int writeToFile() {
+        try {
             File file = new File(FILEPATH);
             FileWriter fw = new FileWriter(file);
 
             for (Bejegyzes b :
-                    naplo)
-            {
+                    naplo) {
                 fw.write(b.toString());
             }
             fw.close();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return 0;
     }
 
 
-    public static void deletExpiredItems()
-    {
-        if (naplo.isEmpty())
-        {
+    public static void deleteExpiredItems() {
+        if (naplo.isEmpty()) {
             beolv(false);
         }
-        LocalDateTime ldt = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        Iterator<Bejegyzes> iterator = naplo.iterator();
         int deletedItems = 0;
-        for (int i = 0; i < naplo.size(); i++)
-        {
-            Bejegyzes b = naplo.get(i);
-            if (ldt.toLocalDate().equals(b.getDatum()))
-            {
-                if (ldt.toLocalTime().isAfter(b.getZaroIdopont()))
-                {
-                    naplo.remove(b);
+        while (iterator.hasNext()) {
+            Bejegyzes b = iterator.next();
+            if (now.toLocalDate().equals(b.getDatum())) {
+                if (now.toLocalTime().isAfter(b.getZaroIdopont())) {
+                    iterator.remove();
                     deletedItems++;
                 }
-            } else if (ldt.toLocalDate().isAfter(b.getDatum()))
-            {
-                naplo.remove(b);
+            } else if (now.toLocalDate().isAfter(b.getDatum())) {
+                iterator.remove();
                 deletedItems++;
             }
         }
-        JOptionPane.showMessageDialog(null,deletedItems + " bejegyzés lett törölve","Törlés sikeres",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, deletedItems + " bejegyzés lett törölve", "Törlés sikeres", JOptionPane.INFORMATION_MESSAGE);
 
 
     }
 
-
-    public static boolean isValid(String[] input)
-    {
-        return isValid(input[0], input[1], input[2], input[3]);
-    }
-
-
-    public static boolean isValid(String dateS, String kezdoidoS, String zaroidoS, String leiras)
-    {
-        try
-        {
-            LocalDate dt = tryParseDate(dateS);
-            if (dt == null)
-            {
+    public static boolean isValid(String... input) {
+        try {
+            LocalDate dt = tryParseDate(input[0]);
+            if (dt == null) {
                 throw new RosszDatumException("");
             }
             LocalTime kezdoIdo = null;
             LocalTime zaroIdo = null;
             DateTimeFormatter tf = DateTimeFormatter.ofPattern("H:mm");
-            try
-            {
-                kezdoIdo = LocalTime.parse(kezdoidoS, tf);
-                zaroIdo = LocalTime.parse(zaroidoS, tf);
-            } catch (DateTimeException ignored)
-            {
+            try {
+                kezdoIdo = LocalTime.parse(input[1], tf);
+                zaroIdo = LocalTime.parse(input[2], tf);
+            } catch (DateTimeException ignored) {
                 errors.append("Rossz idő\n");
 
             }
-            if (kezdoIdo == null || zaroIdo == null)
-            {
+            if (kezdoIdo == null || zaroIdo == null) {
                 throw new NullPointerException("");
             }
-            if (zaroIdo.isBefore(kezdoIdo))
-            {
+            if (zaroIdo.isBefore(kezdoIdo)) {
                 throw new RosszIdoException("");
             }
-            if (leiras.length() > 250)
-            {
+            if (input[3].length() > 250) {
                 throw new StringIndexOutOfBoundsException("");
             }
-            if (!isUnique(new Bejegyzes(dt, kezdoIdo, zaroIdo, leiras)))
-            {
+            if (!isUnique(new Bejegyzes(dt, kezdoIdo, zaroIdo, input[3]))) {
                 return false;
             }
-        } catch (RosszDatumException ignored)
-        {
+        } catch (RosszDatumException ignored) {
             errors.append("Rossz dátum\n");
 
             return false;
-        } catch (NullPointerException ignored)
-        {
+        } catch (NullPointerException ignored) {
             errors.append("Hiba történt a détum vagy az idő beolvasásánál\n");
 
             return false;
-        } catch (StringIndexOutOfBoundsException ignored)
-        {
+        } catch (StringIndexOutOfBoundsException ignored) {
             errors.append("Túll hosszú leírás\n");
 
             return false;
-        } catch (RosszIdoException e)
-        {
+        } catch (RosszIdoException e) {
             errors.append("A záró idő nem lehet a kezdő idő előtt\n");
             return false;
         }
@@ -266,16 +217,11 @@ public class Controller
         return true;
     }
 
-
-
-    public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException, RosszDatumException
-    {
+    public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException, RosszDatumException {
         final String REGEX = "[-,.]";
-        try
-        {
+        try {
             Integer.parseInt(input.split(REGEX)[1]);
-        } catch (NumberFormatException ignored)
-        {
+        } catch (NumberFormatException ignored) {
             HashMap<String, Integer> months = new HashMap<>();
             months.put("JAN", 1);
             months.put("JANUAR", 1);
@@ -321,16 +267,14 @@ public class Controller
         }
 
         Year year = Year.parse(input.split(REGEX)[2]);
-        if (!year.isLeap() && input.split(REGEX)[1].equals("2") && input.split(REGEX)[0].equals("29"))
-        {
+        if (!year.isLeap() && input.split(REGEX)[1].equals("2") && input.split(REGEX)[0].equals("29")) {
             throw new RosszDatumException("");
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
         LocalDate dt = LocalDate.parse(input, formatter);
 
-        if (dt == null)
-        {
+        if (dt == null) {
             System.out.println("Nem sikerult parseolni");
         }
         return dt;

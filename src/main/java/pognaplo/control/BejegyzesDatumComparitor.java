@@ -1,4 +1,4 @@
-package pognaplo.kek;
+package pognaplo.control;
 
 import java.util.Comparator;
 

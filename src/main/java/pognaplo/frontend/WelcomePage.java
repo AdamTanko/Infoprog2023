@@ -1,6 +1,6 @@
 package pognaplo.frontend;
 
-import pognaplo.kek.Controller;
+import pognaplo.control.Controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,12 +34,12 @@ public class WelcomePage extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        // Akkor aktíválódik, ha a felhasználó megnyomja a "Submit" gombot.
+
         submitButton.addActionListener(e -> onSubmit());
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-        // Akkor aktíválódik, ha a felhasználó megnyomja a "textfield1"-en belul az Enter gombot.
+
         textField1.addKeyListener(new KeyAdapter()
         {
             @Override

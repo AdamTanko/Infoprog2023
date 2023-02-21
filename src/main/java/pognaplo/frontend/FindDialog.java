@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class FindDialog extends JDialog
@@ -60,7 +59,6 @@ public class FindDialog extends JDialog
 
     private void onOK()
     {
-        System.out.println(datePicker.getDate());
         setDateInput(datePicker.getDate());
         dispose();
     }

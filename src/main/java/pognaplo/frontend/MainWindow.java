@@ -1,11 +1,10 @@
 package pognaplo.frontend;
 
-import pognaplo.kek.Controller;
+import pognaplo.control.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.DateTimeException;
-import java.time.LocalDateTime;
 
 public class MainWindow extends JFrame
 {
@@ -80,7 +79,7 @@ public class MainWindow extends JFrame
         addButton.addActionListener(e -> new AddWindow());
         deletButton.addActionListener(e ->
         {
-            Controller.deletExpiredItems();
+            Controller.deleteExpiredItems();
             tablePanel.setViewportView(Controller.listItems());
             panel1.revalidate();
             panel1.repaint();
