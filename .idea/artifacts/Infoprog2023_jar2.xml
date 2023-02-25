@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Infoprog2023:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Infoprog2023_jar2</output-path>
+    <root id="archive" name="Infoprog2023.jar">
+      <element id="module-output" name="Infoprog2023" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/lgooddatepicker/LGoodDatePicker/11.2.1/LGoodDatePicker-11.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/swinglabs/swingx/swingx-all/1.6.5/swingx-all-1.6.5.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

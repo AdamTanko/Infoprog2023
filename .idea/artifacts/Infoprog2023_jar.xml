@@ -1,8 +1,12 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Infoprog2023:jar">
+  <artifact name="Infoprog2023:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Infoprog2023_jar</output-path>
-    <root id="archive" name="Infoprog2023.jar">
-      <element id="module-output" name="Infoprog2023" />
+    <root id="root">
+      <element id="archive" name="Infoprog2023.jar">
+        <element id="module-output" name="Infoprog2023" />
+      </element>
+      <element id="library" level="project" name="Maven: com.github.lgooddatepicker:LGoodDatePicker:11.2.1" />
+      <element id="library" level="project" name="Maven: org.swinglabs.swingx:swingx-all:1.6.5" />
     </root>
   </artifact>
 </component>

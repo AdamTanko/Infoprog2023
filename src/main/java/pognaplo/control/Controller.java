@@ -10,10 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Main operating class of the project
@@ -22,7 +19,6 @@ public class Controller {
     private static final String[] HEADER = {"dátum", "kezdő időpont", "záró időpont", "esemény"};
 
     public static final ImageIcon ICON = new ImageIcon("images/Infoprog logo kicsi.png");
-
 
     private static String FILEPATH = "txt/naplo.txt";
 
@@ -34,7 +30,7 @@ public class Controller {
         return FILEPATH;
     }
 
-    public static final ArrayList<Bejegyzes> naplo = new ArrayList<>();
+    public static ArrayList<Bejegyzes> naplo = new ArrayList<>();
 
     private static StringBuilder errors = new StringBuilder();
 
@@ -67,7 +63,7 @@ public class Controller {
                 }
             }
 
-            if (!errors.isEmpty() && displayErrorMsgs) {
+            if ((!errors.isEmpty()) && displayErrorMsgs) {
                 new ErrorDialog(errors.toString());
             }
             errors = new StringBuilder();
@@ -80,17 +76,19 @@ public class Controller {
 
     public static boolean isUnique(Bejegyzes b) {
         for (Bejegyzes b2 : naplo) {
-            if (b2.getDatum().equals(b.getDatum())) {
-                if (b2.getKezdoIdopont().equals(b.getKezdoIdopont())) {
-                    return false;
-                }
+            if (b2.getDatum().equals(b.getDatum()) &&
+                    (!(b2.getZaroIdopont().isBefore(b.getKezdoIdopont()) ||
+                            b.getZaroIdopont().isBefore(b2.getKezdoIdopont())))) {
+                return false;
             }
         }
         return true;
     }
 
+
     public static JTable listItems() {
-        beolv(true);
+
+        if (naplo.isEmpty()) beolv(true);
         naplo.sort(new BejegyzesDatumComparitor());
         String[][] bejegyzesek = new String[naplo.size()][4];
         int yes = 0;
@@ -157,15 +155,15 @@ public class Controller {
                 if (now.toLocalTime().isAfter(b.getZaroIdopont())) {
                     iterator.remove();
                     deletedItems++;
+
                 }
             } else if (now.toLocalDate().isAfter(b.getDatum())) {
                 iterator.remove();
                 deletedItems++;
+
             }
         }
         JOptionPane.showMessageDialog(null, deletedItems + " bejegyzés lett törölve", "Törlés sikeres", JOptionPane.INFORMATION_MESSAGE);
-
-
     }
 
     public static boolean isValid(String... input) {

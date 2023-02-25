@@ -2,15 +2,23 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Infoprog2023:jar" />
+      <artifact name="Infoprog2023:jar2" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="still cleaning shit up">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="added README.md">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Infoprog2023_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pognaplo/main/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Infoprog2023_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Infoprog2023_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/naplo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/txt/naplo.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +66,7 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "E:/VSC Programs/Projects/inroprog2022",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Global Libraries",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -147,6 +155,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.FindDialog" />
         <item itemvalue="Application.BasicDemo" />
       </list>
@@ -185,7 +194,8 @@
       <workItem from="1675364391960" duration="1987000" />
       <workItem from="1675523347120" duration="5430000" />
       <workItem from="1675587052919" duration="36000" />
-      <workItem from="1677009667542" duration="4580000" />
+      <workItem from="1677009667542" duration="4705000" />
+      <workItem from="1677326793749" duration="9171000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
@@ -215,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677014652731</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added README.md">
+      <created>1677015029034</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677015029034</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +265,8 @@
     <MESSAGE value="date parsing still not werk GOD FUCKING DAMNIT" />
     <MESSAGE value="fixed a lot of this, and cleaned shit up" />
     <MESSAGE value="still cleaning shit up" />
-    <option name="LAST_COMMIT_MESSAGE" value="still cleaning shit up" />
+    <MESSAGE value="added README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="added README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
