@@ -20,13 +20,13 @@ public class WelcomePage extends JFrame
 
 
     /**
-     * Definiál egy WelcomPage objektumot.
-     * A WelcomPage bekeri a felhasznalotol a naplo.txt helyet a rendszeren belul.
+     * Defines the WelcomePage object,
+     * This class requests the location of naplo.txt on the user's system.
      */
     public WelcomePage()
     {
 
-        setTitle("Napló");
+        setTitle("Diary");
         setIconImage(Controller.ICON.getImage());
         setResizable(false);
         setSize(450, 300);
@@ -54,7 +54,7 @@ public class WelcomePage extends JFrame
             }
         });
 
-        // Alternativa az elozo ketto opciohoz, ahol a felhasznalo egyenesen kikeresi a naplo.txt helyet a rendszeren
+        // With this option the user directly finds the location of naplo.txt.
         chooseButton.addActionListener(e ->
         {
             JFileChooser jFC = new JFileChooser();
@@ -72,7 +72,7 @@ public class WelcomePage extends JFrame
     {
         try
         {
-            if (textField1.getText().length() <= 0)
+            if (textField1.getText().length() == 0)
             {
                 throw new NullPointerException("");
             } else

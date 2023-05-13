@@ -3,9 +3,9 @@ package pognaplo.frontend;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.TimePicker;
 import com.github.lgooddatepicker.components.TimePickerSettings;
-import pognaplo.exceptions.LeirasLengthException;
-import pognaplo.exceptions.RosszIdoException;
-import pognaplo.control.Bejegyzes;
+import pognaplo.exceptions.EntryLengthException;
+import pognaplo.exceptions.InvalidTimeException;
+import pognaplo.control.DiaryEntry;
 import pognaplo.control.Controller;
 
 import javax.swing.*;
@@ -21,11 +21,11 @@ import java.util.Locale;
 public class AddWindow extends JFrame
 {
     private JPanel panel1;
-    private JTextField esemenyTextField;
+    private JTextField eventTextField;
     private JLabel dateandformat;
     private JButton submitButton;
-    private TimePicker zaroidopontPicker;
-    private TimePicker kezdoidopontPicker;
+    private TimePicker endTimePicker;
+    private TimePicker starTimePicker;
     private DatePicker datepicker;
 
     public AddWindow()
@@ -44,23 +44,23 @@ public class AddWindow extends JFrame
             {
                 FileWriter fw = new FileWriter(Controller.getFilepath(), true);
                 LocalDate dt = datepicker.getDate();
-                LocalTime kezdoidopont = kezdoidopontPicker.getTime();
-                LocalTime zaroidopont = zaroidopontPicker.getTime();
-                String esemeny = esemenyTextField.getText();
+                LocalTime startTime = starTimePicker.getTime();
+                LocalTime endTime = endTimePicker.getTime();
+                String event = eventTextField.getText();
 
 
-                if (zaroidopont.isBefore(kezdoidopont)) throw new RosszIdoException("");
-                if (esemeny.length() > 250) throw new LeirasLengthException("");
+                if (endTime.isBefore(startTime)) throw new InvalidTimeException("");
+                if (event.length() > 250) throw new EntryLengthException("");
                 if (dt == null) throw new NullPointerException("");
 
-                Bejegyzes b = new Bejegyzes(dt,
-                        kezdoidopont,
-                        zaroidopont,
-                        esemeny);
+                DiaryEntry b = new DiaryEntry(dt,
+                        startTime,
+                        endTime,
+                        event);
                 if (Controller.isUnique(b))
                 {
 
-                    fw.write(dt.format(DateTimeFormatter.ofPattern("dd-MM-uuuu")) + "," + kezdoidopont + "," + zaroidopont + ',' + esemeny + "\n");
+                    fw.write(dt.format(DateTimeFormatter.ofPattern("dd-MM-uuuu")) + "," + startTime + "," + endTime + ',' + event + "\n");
                     fw.close();
                     dispose();
                 }
@@ -70,16 +70,16 @@ public class AddWindow extends JFrame
                 throw new RuntimeException(ex);
             } catch (DateTimeException ex)
             {
-                JOptionPane.showMessageDialog(null, "Hiba történt a beolvasasnal", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error occurred while trying to parse the input", "Bad input", JOptionPane.ERROR_MESSAGE);
             } catch (NullPointerException ignored)
             {
-                JOptionPane.showMessageDialog(null, "Hiba törtent a dátum megadásánál", "Hiba törtent", JOptionPane.ERROR_MESSAGE);
-            } catch (LeirasLengthException ignored)
+                JOptionPane.showMessageDialog(null, "Invalid date has been entered", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (EntryLengthException ignored)
             {
-                JOptionPane.showMessageDialog(null, "A leirás túll hosszú (Több mint 250 karakter)", "Túll hosszú leirás", JOptionPane.ERROR_MESSAGE);
-            } catch (RosszIdoException ignored)
+                JOptionPane.showMessageDialog(null, "The event description is too long (More than 250 characters)", "Description too long", JOptionPane.ERROR_MESSAGE);
+            } catch (InvalidTimeException ignored)
             {
-                JOptionPane.showMessageDialog(null, "A záró időpont nem lehet a kezdő időpont előtt", "Rossz bemenet", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The end time cannot be before the start time", "Bad input", JOptionPane.ERROR_MESSAGE);
             }
         });
         pack();
@@ -109,9 +109,9 @@ public class AddWindow extends JFrame
         final JLabel label2 = new JLabel();
         label2.setText("záró időpont");
         panel1.add(label2, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        esemenyTextField = new JTextField();
-        esemenyTextField.setText("");
-        panel1.add(esemenyTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        eventTextField = new JTextField();
+        eventTextField.setText("");
+        panel1.add(eventTextField, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("esemény");
         panel1.add(label3, new com.intellij.uiDesigner.core.GridConstraints(6, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -121,8 +121,8 @@ public class AddWindow extends JFrame
         submitButton.setDisplayedMnemonicIndex(0);
         panel1.add(submitButton, new com.intellij.uiDesigner.core.GridConstraints(8, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel1.add(datepicker, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel1.add(kezdoidopontPicker, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel1.add(zaroidopontPicker, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(starTimePicker, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(endTimePicker, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
     }
 
     /**
@@ -142,7 +142,7 @@ public class AddWindow extends JFrame
         timeSettings.generatePotentialMenuTimes(TimePickerSettings.TimeIncrement.TenMinutes, null, null);
         timeSettings.setInitialTimeToNow();
         datepicker.setLocale(new Locale("HU", "sk"));
-        kezdoidopontPicker = new TimePicker(timeSettings);
-        zaroidopontPicker = new TimePicker(timeSettings);
+        starTimePicker = new TimePicker(timeSettings);
+        endTimePicker = new TimePicker(timeSettings);
     }
 }

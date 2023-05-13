@@ -1,7 +1,7 @@
 package pognaplo.control;
 
-import pognaplo.exceptions.RosszDatumException;
-import pognaplo.exceptions.RosszIdoException;
+import pognaplo.exceptions.InvalidDateException;
+import pognaplo.exceptions.InvalidTimeException;
 import pognaplo.frontend.ErrorDialog;
 
 import javax.swing.*;
@@ -30,12 +30,12 @@ public class Controller {
         return FILEPATH;
     }
 
-    public static ArrayList<Bejegyzes> naplo = new ArrayList<>();
+    public static ArrayList<DiaryEntry> diary = new ArrayList<>();
 
     private static StringBuilder errors = new StringBuilder();
 
     /**
-     * Beolvassa a naplo.txt tartalmát a naplo {@link ArrayList}-be
+     * Reads the contents of naplo.txt into the diary {@link ArrayList}.
      */
     public static void beolv(boolean displayErrorMsgs) {
         try {
@@ -48,7 +48,7 @@ public class Controller {
                     linecounter++;
                     String[] tokens = sc.nextLine().split(",");
                     if (isValid(tokens)) {
-                        naplo.add(new Bejegyzes(tryParseDate(tokens[0]),
+                        diary.add(new DiaryEntry(tryParseDate(tokens[0]),
                                 LocalTime.parse(tokens[1], timeFormatter),
                                 LocalTime.parse(tokens[2], timeFormatter),
                                 tokens[3]));
@@ -58,7 +58,7 @@ public class Controller {
                 } catch (StringIndexOutOfBoundsException ignored) {
                     errors.append("Túl hosszú leírás a ").append(linecounter).append(". sorban\n");
 
-                } catch (RosszDatumException ignored) {
+                } catch (InvalidDateException ignored) {
                     errors.append("Rossz dátum a ").append(linecounter).append(". sorban\n");
                 }
             }
@@ -74,11 +74,11 @@ public class Controller {
     }
 
 
-    public static boolean isUnique(Bejegyzes b) {
-        for (Bejegyzes b2 : naplo) {
-            if (b2.getDatum().equals(b.getDatum()) &&
-                    (!(b2.getZaroIdopont().isBefore(b.getKezdoIdopont()) ||
-                            b.getZaroIdopont().isBefore(b2.getKezdoIdopont())))) {
+    public static boolean isUnique(DiaryEntry b) {
+        for (DiaryEntry b2 : diary) {
+            if (b2.getDate().equals(b.getDate()) &&
+                    (!(b2.getEndTime().isBefore(b.getStartTime()) ||
+                            b.getEndTime().isBefore(b2.getStartTime())))) {
                 return false;
             }
         }
@@ -87,17 +87,16 @@ public class Controller {
 
 
     public static JTable listItems() {
-
-        if (naplo.isEmpty()) beolv(true);
-        naplo.sort(new BejegyzesDatumComparitor());
-        String[][] bejegyzesek = new String[naplo.size()][4];
+        if (diary.isEmpty()) beolv(true);
+        diary.sort(new DiaryEntryDateComparitor());
+        String[][] entries = new String[diary.size()][4];
         int yes = 0;
-        for (Bejegyzes b : naplo) {
-            bejegyzesek[yes++] = b.toArray();
+        for (DiaryEntry b : diary) {
+            entries[yes++] = b.toArray();
 
         }
 
-        JTable jt = new JTable(bejegyzesek, HEADER);
+        JTable jt = new JTable(entries, HEADER);
         jt.setBounds(50, 40, 200, 0);
         jt.setDefaultEditor(Object.class, null);
         return jt;
@@ -106,32 +105,32 @@ public class Controller {
 
     public static JTable findBasedOnDate(LocalDate dt) {
         beolv(false);
-        String[][] bejegyzesek = new String[naplo.size()][4];
+        String[][] entries = new String[diary.size()][4];
         int idx = 0;
-        for (Bejegyzes b : naplo) {
-            if (b.getDatum().equals(dt)) {
-                bejegyzesek[idx++] = b.toArray();
+        for (DiaryEntry b : diary) {
+            if (b.getDate().equals(dt)) {
+                entries[idx++] = b.toArray();
             }
         }
-        if (bejegyzesek.length == 0) {
+        if (entries.length == 0) {
             return null;
         }
-        JTable jt = new JTable(bejegyzesek, HEADER);
+        JTable jt = new JTable(entries, HEADER);
         jt.setDefaultEditor(Object.class, null);
         return jt;
     }
 
 
     /**
-     * Beírja a naplo.txt-be a naplo {@link ArrayList} tartalmát
+     * Writes the contents of the diary {@link ArrayList} back into naplo.txt.
      */
     public static int writeToFile() {
         try {
             File file = new File(FILEPATH);
             FileWriter fw = new FileWriter(file);
 
-            for (Bejegyzes b :
-                    naplo) {
+            for (DiaryEntry b :
+                    diary) {
                 fw.write(b.toString());
             }
             fw.close();
@@ -143,71 +142,66 @@ public class Controller {
 
 
     public static void deleteExpiredItems() {
-        if (naplo.isEmpty()) {
+        if (diary.isEmpty()) {
             beolv(false);
         }
         LocalDateTime now = LocalDateTime.now();
-        Iterator<Bejegyzes> iterator = naplo.iterator();
+        Iterator<DiaryEntry> iterator = diary.iterator();
         int deletedItems = 0;
         while (iterator.hasNext()) {
-            Bejegyzes b = iterator.next();
-            if (now.toLocalDate().equals(b.getDatum())) {
-                if (now.toLocalTime().isAfter(b.getZaroIdopont())) {
+            DiaryEntry b = iterator.next();
+            if (now.toLocalDate().equals(b.getDate())) {
+                if (now.toLocalTime().isAfter(b.getEndTime())) {
                     iterator.remove();
                     deletedItems++;
 
                 }
-            } else if (now.toLocalDate().isAfter(b.getDatum())) {
+            } else if (now.toLocalDate().isAfter(b.getDate())) {
                 iterator.remove();
                 deletedItems++;
 
             }
         }
-        JOptionPane.showMessageDialog(null, deletedItems + " bejegyzés lett törölve", "Törlés sikeres", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, deletedItems + " number of entries have been deleted", "Deletion succesful", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static boolean isValid(String... input) {
         try {
             LocalDate dt = tryParseDate(input[0]);
-            if (dt == null) {
-                throw new RosszDatumException("");
-            }
-            LocalTime kezdoIdo = null;
-            LocalTime zaroIdo = null;
+            LocalTime startTime = null;
+            LocalTime endTime = null;
             DateTimeFormatter tf = DateTimeFormatter.ofPattern("H:mm");
             try {
-                kezdoIdo = LocalTime.parse(input[1], tf);
-                zaroIdo = LocalTime.parse(input[2], tf);
+                startTime = LocalTime.parse(input[1], tf);
+                endTime = LocalTime.parse(input[2], tf);
             } catch (DateTimeException ignored) {
                 errors.append("Rossz idő\n");
 
             }
-            if (kezdoIdo == null || zaroIdo == null) {
+            if (startTime == null || endTime == null) {
                 throw new NullPointerException("");
             }
-            if (zaroIdo.isBefore(kezdoIdo)) {
-                throw new RosszIdoException("");
+            if (endTime.isBefore(startTime)) {
+                throw new InvalidTimeException("");
             }
             if (input[3].length() > 250) {
                 throw new StringIndexOutOfBoundsException("");
             }
-            if (!isUnique(new Bejegyzes(dt, kezdoIdo, zaroIdo, input[3]))) {
+            if (!isUnique(new DiaryEntry(dt, startTime, endTime, input[3]))) {
                 return false;
             }
-        } catch (RosszDatumException ignored) {
-            errors.append("Rossz dátum\n");
+        } catch (InvalidDateException ignored) {
+            errors.append("Invalid date\n");
 
             return false;
         } catch (NullPointerException ignored) {
-            errors.append("Hiba történt a détum vagy az idő beolvasásánál\n");
-
+            errors.append("An error occurred while trying to parse the date or the time\n");
             return false;
         } catch (StringIndexOutOfBoundsException ignored) {
-            errors.append("Túll hosszú leírás\n");
-
+            errors.append("Event description too long\n");
             return false;
-        } catch (RosszIdoException e) {
-            errors.append("A záró idő nem lehet a kezdő idő előtt\n");
+        } catch (InvalidTimeException e) {
+            errors.append("The end time cannot be before the start time\n");
             return false;
         }
 
@@ -215,11 +209,12 @@ public class Controller {
         return true;
     }
 
-    public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException, RosszDatumException {
+    public static LocalDate tryParseDate(String input) throws DateTimeException, NullPointerException, InvalidDateException {
         final String REGEX = "[-,.]";
         try {
             Integer.parseInt(input.split(REGEX)[1]);
         } catch (NumberFormatException ignored) {
+            // what is this even??? - AT
             HashMap<String, Integer> months = new HashMap<>();
             months.put("JAN", 1);
             months.put("JANUAR", 1);
@@ -258,7 +253,6 @@ public class Controller {
             months.put("NOVEMBER", 11);
             months.put("DEC", 12);
             months.put("DECEMBER", 12);
-
             String yes = input.split(REGEX)[1].toUpperCase();
             String no = months.get(input.split(REGEX)[1].toUpperCase()).toString();
             input = input.toUpperCase().replace(yes, no);
@@ -266,15 +260,11 @@ public class Controller {
 
         Year year = Year.parse(input.split(REGEX)[2]);
         if (!year.isLeap() && input.split(REGEX)[1].equals("2") && input.split(REGEX)[0].equals("29")) {
-            throw new RosszDatumException("");
+            throw new InvalidDateException("");
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
-        LocalDate dt = LocalDate.parse(input, formatter);
 
-        if (dt == null) {
-            System.out.println("Nem sikerult parseolni");
-        }
-        return dt;
+        return LocalDate.parse(input, formatter);
     }
 }

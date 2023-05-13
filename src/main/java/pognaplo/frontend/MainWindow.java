@@ -22,15 +22,15 @@ public class MainWindow extends JFrame
 
 
     /**
-     * A fo ablak amivel a felhasznalo erintekzni fog.
+     * The main window, with which the user will interact
      *
-     * @param filepath - filepath a naplo.txt-hez
+     * @param filepath - filepath to the naplo.txt
      */
     public MainWindow(String filepath)
     {
-        // megnezni, hogy a filepath tartalmazza-e a naplo.txt-t, ha nem appendeli a filepath-hez
-        // utana atadja a Controller-nek
+
         $$$setupUI$$$();
+        // Checks if the filepath has "naplo.txt" at the end, if not it appends it to it and passes it to the Controller.
         if (filepath.endsWith("\\naplo.txt") || filepath.endsWith("/naplo.txt"))
         {
             Controller.setFilepath(filepath);
@@ -38,7 +38,7 @@ public class MainWindow extends JFrame
         {
             Controller.setFilepath(filepath + "\\naplo.txt");
         }
-        setTitle("Napló");
+        setTitle("Diary");
         setIconImage(Controller.ICON.getImage());
         setResizable(false);
         setSize(450, 300);
@@ -58,20 +58,20 @@ public class MainWindow extends JFrame
         {
             try
             {
-                FindDialog yes = new FindDialog();
-                if (yes.getDateInput() == null)
+                FindDialog findDialog = new FindDialog();
+                if (findDialog.getDateInput() == null)
                 {
                     throw new NullPointerException();
                 } else
                 {
-                    tablePanel.setViewportView(Controller.findBasedOnDate(yes.getDateInput()));
+                    tablePanel.setViewportView(Controller.findBasedOnDate(findDialog.getDateInput()));
                     tablePanel.revalidate();
                     tablePanel.repaint();
                 }
 
             } catch (DateTimeException ignored)
             {
-                JOptionPane.showMessageDialog(null, "Hiba tortent a datum beolvasasanal", "Hiba tortent", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "An error occurred while parsing the date", "Error", JOptionPane.ERROR_MESSAGE);
             } catch (NullPointerException ignored)
             {
             }
@@ -86,7 +86,7 @@ public class MainWindow extends JFrame
         });
         exitButton.addActionListener(e ->
         {
-            if (Controller.naplo.size() == 0)
+            if (Controller.diary.size() == 0)
             {
                 dispose();
                 System.exit(0);
