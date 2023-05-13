@@ -9,26 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="finalized this finally">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_lgooddatepicker_LGoodDatePicker_11_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_swinglabs_swingx_swingx_all_1_6_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infoprog2023.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Infoprog2023.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/control/Bejegyzes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/DiaryEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/control/BejegyzesDatumComparitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/DiaryEntryDateComparitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/control/BejegyzesKezdoIdopontComparitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/LeirasLengthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/EntryLengthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszDatumException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/InvalidDateException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/RosszIdoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/exceptions/InvalidTimeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/AddWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pognaplo/frontend/WelcomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pognaplo/main/Test.java" beforeDir="false" />
+    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="translated the project from hun to en">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +209,7 @@
       <workItem from="1680680847852" duration="58000" />
       <workItem from="1681322754485" duration="651000" />
       <workItem from="1681396757485" duration="5000" />
-      <workItem from="1683995387260" duration="2213000" />
+      <workItem from="1683995387260" duration="2574000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
@@ -271,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677338942689</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="translated the project from hun to en">
+      <created>1683997827460</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683997827460</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +295,8 @@
     <MESSAGE value="still cleaning shit up" />
     <MESSAGE value="added README.md" />
     <MESSAGE value="finalized this finally" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalized this finally" />
+    <MESSAGE value="translated the project from hun to en" />
+    <option name="LAST_COMMIT_MESSAGE" value="translated the project from hun to en" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
