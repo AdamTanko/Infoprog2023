@@ -1,5 +1,3 @@
-Tankó Ádám 2023-as Infoprog beadványa.
-# Szükséges:
+Tankó Ádáms Infoprog 2023 submission.
+# Prerequisites:
 - Java 17+
-# Futtatás
-- A `main.java` compilolásával valamilyen IFK-ból (IDE).
