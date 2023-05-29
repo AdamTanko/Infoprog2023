@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="translated the project from hun to en">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +209,8 @@
       <workItem from="1680680847852" duration="58000" />
       <workItem from="1681322754485" duration="651000" />
       <workItem from="1681396757485" duration="5000" />
-      <workItem from="1683995387260" duration="2574000" />
+      <workItem from="1683995387260" duration="2587000" />
+      <workItem from="1685369190798" duration="622000" />
     </task>
     <task id="LOCAL-00001" summary="almost done kekw">
       <created>1672738664278</created>
@@ -260,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683997827460</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="translated the project from hun to en">
+      <created>1683997970131</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1683997970131</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
