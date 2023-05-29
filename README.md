@@ -1,4 +1,4 @@
-Tankó Ádáms Infoprog 2023 submission.
+Tankó Ádám's Infoprog 2023 submission.
 # Prerequisites:
 - Java 17+
 - A naplo.txt which has some initial source data in it.
