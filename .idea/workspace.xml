@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="translated the project from hun to en">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="c4b840da-ecad-4665-9e5f-7af2c8821b16" name="Changes" comment="translated the project from hun to en" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -296,7 +294,8 @@
     <MESSAGE value="added README.md" />
     <MESSAGE value="finalized this finally" />
     <MESSAGE value="translated the project from hun to en" />
-    <option name="LAST_COMMIT_MESSAGE" value="translated the project from hun to en" />
+    <MESSAGE value="added english months into Controller.tryParseDate" />
+    <option name="LAST_COMMIT_MESSAGE" value="added english months into Controller.tryParseDate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
